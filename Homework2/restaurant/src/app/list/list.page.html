@@ -9,33 +9,39 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item color="light" class="forum">
-    <pre>Item Name: </pre>
-    <ion-input type="string" id="itemName"></ion-input>
-  </ion-item>
-  <ion-item color="light" class="forum">
-    <pre>Price: $ </pre>
-    <ion-input type="number" id="price" min="0" step="0.01"></ion-input>
-  </ion-item>
-  <ion-item color="light" class="forum">
-    <pre>Category: </pre>
-    <ion-select slot="end">
-      <ion-select-option>Breakfast</ion-select-option>
-      <ion-select-option>Lunch</ion-select-option>
-      <ion-select-option>Dinner</ion-select-option>
-      <ion-select-option>Drinks</ion-select-option>
-      <ion-select-option>Desert</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item color="light" class="forum">
-    <pre>Description: </pre>
-    <ion-input type="string" id="description"></ion-input>
-  </ion-item>
-  <ion-item color="light" class="forum">
-    <pre>Photo URL: </pre>
-    <ion-input type="url" id="photoUrl"></ion-input>
-  </ion-item>
-  <ion-item color="light" class="forum">
-    <ion-button>Submit</ion-button>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-item color="light" class="forum">
+          <pre>Item Name: </pre>
+          <ion-input type="string" [(ngModel)]="itemName"></ion-input>
+        </ion-item>
+        <ion-item color="light" class="forum">
+          <pre>Price: $ </pre>
+          <ion-input type="number" [(ngModel)]="price" min="0" step="0.01"></ion-input>
+        </ion-item>
+        <ion-item color="light" class="forum">
+          <pre>Category: </pre>
+          <ion-select slot="end">
+            <ion-select-option>Breakfast</ion-select-option>
+            <ion-select-option>Lunch</ion-select-option>
+            <ion-select-option>Dinner</ion-select-option>
+            <ion-select-option>Drinks</ion-select-option>
+            <ion-select-option>Desert</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item color="light" class="forum">
+          <pre>Description: </pre>
+          <ion-input type="string" [(ngModel)]="description"></ion-input>
+        </ion-item>
+        <ion-item color="light" class="forum">
+          <pre>Photo URL: </pre>
+          <ion-input type="url" [(ngModel)]="photoUrl"></ion-input>
+        </ion-item>
+        <ion-item color="light" class="forum">
+          <ion-button type="submit" (click)="createItem()">submit</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

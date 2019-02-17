@@ -6,28 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
+  public items: Array<Item>;
+  public itemName: string;
+  public price: number;
+  public category: string;
+  public description: string;
+  public photoUrl: string;
   constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.items = [];
   }
 
   ngOnInit() {
@@ -36,4 +22,24 @@ export class ListPage implements OnInit {
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
+  createItem() {
+    this.items.push(new Item(this.itemName, this.price, this.category, this.description, this.photoUrl));
+    localStorage.clear();
+    localStorage.setItem('allItems', JSON.stringify(this.items));
+  }
+}
+export class Item {
+  public name: string;
+  public price: number;
+  public category: string;
+  public description: string;
+  public photo: string;
+  constructor(iname: string, iprice: number, icat: string, ides: string, iphoto: string) {
+    this.name = iname;
+    this.price = iprice;
+    this.category = icat;
+    this.description = ides;
+    this.photo = iphoto;
+    document.write(JSON.stringify(this));
+  }
 }
