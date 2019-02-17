@@ -37,9 +37,9 @@ export class Item {
   constructor(iname: string, iprice: number, icat: string, ides: string, iphoto: string) {
     this.name = iname;
     this.price = iprice;
-    this.category = icat;
     this.description = ides;
     this.photo = iphoto;
-    document.write(JSON.stringify(this));
+    this.category = icat;
+    console.log(JSON.stringify(this));
   }
 }
