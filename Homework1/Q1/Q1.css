@@ -1,0 +1,29 @@
+.full {
+  display: table;
+  width: 100%;
+}
+.left {
+  display: table-cell;
+  background-color: lightgrey;
+  width: 50%;
+}
+.right {
+  display: table-cell;
+  background-color: lightgreen;
+  width: 50%;
+}
+.celebPic {
+  width: 75%;
+}
+h {
+  color: red;
+  font-size: 250%;
+  font-weight: bold;
+}
+.sub {
+  color: purple;
+  font-size: 150%;
+}
+.bookPic {
+  width: 62.5%;
+}

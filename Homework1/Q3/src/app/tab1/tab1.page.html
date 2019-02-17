@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-icon name="arrow-round-back" size="large"></ion-icon>
+    <ion-title>
+      Add Homework
+    </ion-title>
+    <ion-button slot="end" color="light">
+      <ion-icon name="add-circle-outline" size="large" color="primary"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+          <ion-label>Classes:</ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-select-option value="nes">CSCE520</ion-select-option>
+            <ion-select-option value="n64">CSCE320</ion-select-option>
+          </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-item>
+        <ion-label>Homework Name:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Date:</ion-label>
+          <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Time:</ion-label>
+          <ion-datetime displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label >Set Priority :</ion-label>
+            <ion-range color="danger" pin="true"></ion-range>
+        </ion-item>
+  <ion-item>
+    <ion-label inline>Description:</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+</ion-content>
