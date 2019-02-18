@@ -40,6 +40,5 @@ export class Item {
     this.description = ides;
     this.photo = iphoto;
     this.category = icat;
-    console.log(JSON.stringify(this));
   }
 }

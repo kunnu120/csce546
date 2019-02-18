@@ -14,11 +14,6 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
-    },
-    {
-      title: 'Add Item',
-      url: '/list',
-      icon: 'add-circle-outline'
     }
   ];
 
