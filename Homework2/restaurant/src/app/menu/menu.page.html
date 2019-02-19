@@ -8,5 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list *ngFor="let menuItem of menuItems">
+    <ion-item>
+      <ion-title>
+        {{menuItem.name}}
+      </ion-title>
+      <img src="{{menuitem.photo}}">
+    </ion-item>
+  </ion-list>
 </ion-content>

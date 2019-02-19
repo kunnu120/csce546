@@ -6,14 +6,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  public items: Array<Item>;
+  public breakfastItems: Array<Item>;
+  public lunchItems: Array<Item>;
+  public dinnerItems: Array<Item>;
+  public drinkItems: Array<Item>;
+  public dessertItems: Array<Item>;
+  public otherItems: Array<Item>;
   public itemName: string;
   public price: number;
   public category: string;
   public description: string;
   public photoUrl: string;
   constructor() {
-    this.items = [];
+    this.breakfastItems = [];
+    this.lunchItems = [];
+    this.dinnerItems = [];
+    this.drinkItems = [];
+    this.dessertItems = [];
+    this.otherItems = [];
+    this.breakfastItems.push(new Item('Dosa', 12.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
+    localStorage.setItem('Breakfast', JSON.stringify(this.breakfastItems));
+    localStorage.setItem('Lunch', JSON.stringify(this.lunchItems));
+    localStorage.setItem('Dinner', JSON.stringify(this.dinnerItems));
+    localStorage.setItem('Drinks', JSON.stringify(this.drinkItems));
+    localStorage.setItem('Desserts', JSON.stringify(this.dessertItems));
+    localStorage.setItem('Other', JSON.stringify(this.otherItems));
   }
 
   ngOnInit() {
@@ -23,9 +40,9 @@ export class ListPage implements OnInit {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
   createItem() {
-    this.items.push(new Item(this.itemName, this.price, this.category, this.description, this.photoUrl));
-    localStorage.clear();
-    localStorage.setItem('allItems', JSON.stringify(this.items));
+    var array: Item [] = JSON.parse(localStorage.getItem(this.category));
+    array.push(new Item(this.itemName, this.price, this.category, this.description, this.photoUrl));
+    localStorage.setItem(this.category, JSON.stringify(array));
   }
 }
 export class Item {
