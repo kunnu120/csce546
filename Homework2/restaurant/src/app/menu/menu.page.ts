@@ -12,7 +12,9 @@ export class MenuPage implements OnInit {
   typeOfMenu: string;
   menuItems: Item [];
   constructor(private route: ActivatedRoute, private r: Router) { }
-
+  goBack() {
+    this.r.navigate(['/home'])
+  }
   ngOnInit() {
     this.route.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
     this.menuItems = JSON.parse(localStorage.getItem(this.typeOfMenu));

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -17,14 +18,32 @@ export class ListPage implements OnInit {
   public category: string;
   public description: string;
   public photoUrl: string;
-  constructor() {
+  constructor(private route: Router) {
     this.breakfastItems = [];
     this.lunchItems = [];
     this.dinnerItems = [];
     this.drinkItems = [];
     this.dessertItems = [];
     this.otherItems = [];
+    localStorage.clear();
     this.breakfastItems.push(new Item('Dosa', 12.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
+    this.lunchItems.push(new Item('Biryani', 12.25, 'Lunch', 'dosa', '/assets/Breakfast.jpg'));
+    this.dinnerItems.push(new Item('Butter Chicken', 12.25, 'Dinner', 'dosa', '/assets/Breakfast.jpg'));
+    this.drinkItems.push(new Item('Lassi', 12.25, 'Drinks', 'dosa', '/assets/Breakfast.jpg'));
+    this.dessertItems.push(new Item('Kheer', 12.25, 'Desserts', 'dosa', '/assets/Breakfast.jpg'));
+    this.otherItems.push(new Item('Avakai', 12.25, 'Other', 'dosa', '/assets/Breakfast.jpg'));
+    this.breakfastItems.push(new Item('Idli', 12.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
+    this.lunchItems.push(new Item('Chicken Curry', 12.25, 'Lunch', 'dosa', '/assets/Breakfast.jpg'));
+    this.dinnerItems.push(new Item('Chiken Tikka Masala', 12.25, 'Dinner', 'dosa', '/assets/Breakfast.jpg'));
+    this.drinkItems.push(new Item('Thumbs Up', 12.25, 'Drinks', 'dosa', '/assets/Breakfast.jpg'));
+    this.dessertItems.push(new Item('Ladoo', 12.25, 'Desserts', 'dosa', '/assets/Breakfast.jpg'));
+    this.otherItems.push(new Item('Curd', 12.25, 'Other', 'dosa', '/assets/Breakfast.jpg'));
+    this.breakfastItems.push(new Item('Upma', 12.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
+    this.lunchItems.push(new Item('Naan', 12.25, 'Lunch', 'dosa', '/assets/Breakfast.jpg'));
+    this.dinnerItems.push(new Item('Roti', 12.25, 'Dinner', 'dosa', '/assets/Breakfast.jpg'));
+    this.drinkItems.push(new Item('Sugar Cane Juice', 12.25, 'Drinks', 'dosa', '/assets/Breakfast.jpg'));
+    this.dessertItems.push(new Item('Gulab Jamun', 12.25, 'Desserts', 'dosa', '/assets/Breakfast.jpg'));
+    this.otherItems.push(new Item('Chutney', 12.25, 'Other', 'dosa', '/assets/Breakfast.jpg'));
     localStorage.setItem('Breakfast', JSON.stringify(this.breakfastItems));
     localStorage.setItem('Lunch', JSON.stringify(this.lunchItems));
     localStorage.setItem('Dinner', JSON.stringify(this.dinnerItems));
@@ -39,6 +58,9 @@ export class ListPage implements OnInit {
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
+  goBack() {
+    this.route.navigate(['/home'])
+  }
   createItem() {
     var array: Item [] = JSON.parse(localStorage.getItem(this.category));
     array.push(new Item(this.itemName, this.price, this.category, this.description, this.photoUrl));
