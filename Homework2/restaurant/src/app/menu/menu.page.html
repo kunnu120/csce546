@@ -12,12 +12,10 @@
 <ion-content padding>
   <ion-list *ngFor="let menuItem of menuItems">
     <ion-item color="primary" color="light">
-      <ion-title>
+      <ion-img src="{{menuItem.photo}}"></ion-img>
+      <ion-label>
         {{menuItem.name}}
-      </ion-title>
-      <!-- <p>
-        {{menuitem.description}}
-      </p> -->
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
