@@ -22,6 +22,9 @@ export class OrdersPage implements OnInit {
     this.orderList.push(tOrder);
     this.currentOrder = tOrder;
   }
+  goToOrder() {
+    this.route.navigate(['/order-detail']);
+  }
 }
 export class order {
   public items: Item[];

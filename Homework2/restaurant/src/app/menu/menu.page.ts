@@ -19,7 +19,7 @@ export class MenuPage implements OnInit {
     this.r.navigate(['/home'])
   }
   goToItem() {
-    this.r.navigate(['/item-detail', {selectedItem: this.menuItems[0]}]);
+    this.r.navigate(['/item-detail', {selectedItem: this.menuItems[0], menuType: this.typeOfMenu}]);
   }
   ngOnInit() {
 

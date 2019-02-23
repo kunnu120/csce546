@@ -9,11 +9,17 @@ import { Item } from '../list/list.page';
 })
 export class ItemDetailPage implements OnInit {
   public item: Item;
+  public typeOfMenu: string;
   constructor(private route: Router, private r: ActivatedRoute) {
     this.r.params.subscribe(params => {this.item = params['selectedItem'];});
+    console.log(JSON.stringify(this.item));
+    this.r.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
   }
 
   ngOnInit() {
   }
 
+  goBack() {
+    this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
+  }
 }
