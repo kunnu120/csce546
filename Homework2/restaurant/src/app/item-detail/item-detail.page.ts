@@ -11,7 +11,7 @@ export class ItemDetailPage implements OnInit {
   public item: Item;
   public typeOfMenu: string;
   constructor(private route: Router, private r: ActivatedRoute) {
-    this.r.params.subscribe(params => {this.item = params['selectedItem'];});
+    this.r.params.subscribe(params => {this.item = JSON.parse(params['selectedItem']);});
     console.log(JSON.stringify(this.item));
     this.r.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
   }

@@ -18,8 +18,8 @@ export class MenuPage implements OnInit {
   goBack() {
     this.r.navigate(['/home'])
   }
-  goToItem() {
-    this.r.navigate(['/item-detail', {selectedItem: this.menuItems[0], menuType: this.typeOfMenu}]);
+  goToItem(x: Item) {
+    this.r.navigate(['/item-detail', {selectedItem: JSON.stringify(x), menuType: this.typeOfMenu}]);
   }
   ngOnInit() {
 

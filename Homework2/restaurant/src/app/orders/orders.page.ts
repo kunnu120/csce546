@@ -14,6 +14,8 @@ export class OrdersPage implements OnInit {
     this.orderList = [];
     this.currentOrder = null;
     this.createOrder(0);
+    this.createOrder(0);
+    this.createOrder(0);
   }
   ngOnInit() {
   }
@@ -22,8 +24,8 @@ export class OrdersPage implements OnInit {
     this.orderList.push(tOrder);
     this.currentOrder = tOrder;
   }
-  goToOrder() {
-    this.route.navigate(['/order-detail']);
+  goToOrder(x: order) {
+    this.route.navigate(['/order-detail', {selectedOrder: x}]);
   }
 }
 export class order {
