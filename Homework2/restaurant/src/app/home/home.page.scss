@@ -1,11 +1,14 @@
-$maxWidthIonCard: 600px;
 ion-card {
-  max-width: $maxWidthIonCard;
-  transform: translateX(-50%);
+  max-width: 600px;
   left: 50%;
+  transform: translateX(-50%);
   position: relative;
-  padding: 10px;
-  ion-img {
-    max-height: 40%;
-  }
+  padding-left: 0px;
+}
+ion-img {
+  max-height: 45vh;
+  overflow: hidden;
+}
+ion-content {
+  overflow-x: scroll;
 }

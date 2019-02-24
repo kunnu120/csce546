@@ -63,8 +63,15 @@ export class ListPage implements OnInit {
   }
   createItem() {
     var array: Item [] = JSON.parse(localStorage.getItem(this.category));
-    array.push(new Item(this.itemName, this.price, this.category, this.description, this.photoUrl));
+    var tItem = new Item(this.itemName, this.price, this.category, this.description, this.photoUrl);
+    array.push(tItem);
     localStorage.setItem(this.category, JSON.stringify(array));
+    this.itemName = "";
+    this.price = null;
+    this.category = "";
+    this.description = "";
+    this.photoUrl = "";
+    this.route.navigate(['/item-detail', {selectedItem: tItem}]);
   }
 }
 export class Item {
