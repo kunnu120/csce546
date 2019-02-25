@@ -13,7 +13,7 @@ export class ListPage implements OnInit {
   public description: string;
   public photoUrl: string;
   constructor(private route: Router) {
-    
+
   }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class ListPage implements OnInit {
     this.category = "";
     this.description = "";
     this.photoUrl = "";
-    this.route.navigate(['/item-detail', {selectedItem: tItem}]);
+    this.route.navigate(['/item-detail', {selectedItem: JSON.stringify(tItem), menuType: tItem.category}]);
   }
 }
 export class Item {

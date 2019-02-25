@@ -10,7 +10,7 @@ import { order } from '../orders/orders.page';
 export class OrderDetailPage implements OnInit {
   currOrder: order;
   constructor(private route: Router, private r: ActivatedRoute) {
-    this.r.params.subscribe(params => {this.currOrder = params['selectedItem'];});
+    this.r.params.subscribe(params => {this.currOrder = params['selectedOrder'];});
   }
 
   ngOnInit() {

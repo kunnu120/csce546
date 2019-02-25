@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from '../list/list.page';
-import { OrdersPage } from '../orders/orders.page';
+import { orders, order } from '../orders/orders.page';
 
 @Component({
   selector: 'app-item-detail',

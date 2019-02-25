@@ -43,7 +43,7 @@ export class order {
     this.totalPrice = 0;
     this.date = orderDate;
   }
-  addItem(x: Item) {
+  public addItem(x: Item) {
     this.items.push(x);
     this.totalItems++;
     this.totalPrice += x.price;
