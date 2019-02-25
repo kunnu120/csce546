@@ -8,7 +8,7 @@ import { Item } from '../list/list.page';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  allOrders: orders;
+  public allOrders: orders;
   constructor(private route: Router) {
     this.allOrders = JSON.parse(localStorage.getItem('orders'));
   }

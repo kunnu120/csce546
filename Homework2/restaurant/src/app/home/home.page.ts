@@ -17,7 +17,9 @@ export class HomePage {
   public dessertItems: Array<Item>;
   public otherItems: Array<Item>;
   constructor(private route: Router) {
+    localStorage.clear();
     this.listOfOrders = new orders();
+    this.listOfOrders.createOrder(0);
     localStorage.setItem('orders', JSON.stringify(this.listOfOrders));
     this.breakfastItems = [];
     this.lunchItems = [];
@@ -25,7 +27,6 @@ export class HomePage {
     this.drinkItems = [];
     this.dessertItems = [];
     this.otherItems = [];
-    localStorage.clear();
     this.breakfastItems.push(new Item('Dosa', 5.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
     this.lunchItems.push(new Item('Biryani', 12.75, 'Lunch', 'dosa', '/assets/Breakfast.jpg'));
     this.dinnerItems.push(new Item('Butter Chicken', 8.25, 'Dinner', 'dosa', '/assets/Breakfast.jpg'));
