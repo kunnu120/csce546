@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from '../list/list.page';
+import { OrdersPage } from '../orders/orders.page';
 
 @Component({
   selector: 'app-item-detail',
@@ -12,13 +13,15 @@ export class ItemDetailPage implements OnInit {
   public typeOfMenu: string;
   constructor(private route: Router, private r: ActivatedRoute) {
     this.r.params.subscribe(params => {this.item = JSON.parse(params['selectedItem']);});
-    console.log(JSON.stringify(this.item));
     this.r.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
   }
 
   ngOnInit() {
   }
-
+  addToOrder() {
+    localStorage.setItem('orders', JSON.stringify(JSON.parse(localStorage.getItem('orders')).currentOrder.addItem(this.item)));
+    console.log("click");
+  }
   goBack() {
     this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
   }

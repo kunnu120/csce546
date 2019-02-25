@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { order } from '../orders/orders.page';
 
 @Component({
   selector: 'app-order-detail',
@@ -7,8 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./order-detail.page.scss'],
 })
 export class OrderDetailPage implements OnInit {
-
-  constructor(private route: Router) { }
+  currOrder: order;
+  constructor(private route: Router, private r: ActivatedRoute) {
+    this.r.params.subscribe(params => {this.currOrder = params['selectedItem'];});
+  }
 
   ngOnInit() {
   }

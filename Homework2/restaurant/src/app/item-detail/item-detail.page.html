@@ -3,10 +3,18 @@
     <ion-button slot="start" (click)="goBack()" fill="clear">
       <ion-icon name="arrow-back" color="dark"></ion-icon>
     </ion-button>
-    <ion-title text-center>{{item.name}}</ion-title>
+    <ion-title text-center>{{typeOfMenu}} Item</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-img src="{{item.photo}}"></ion-img>
+  <ion-card>
+    <ion-img src="{{item.photo}}"></ion-img>
+    <ion-card-title style="font-size: 200%; height: 30vh;">
+      <pre>{{item.name}}    {{item.price}}</pre>
+    </ion-card-title>
+    <ion-text>{{item.category}}</ion-text>
+    <p>{{item.description}}</p>
+    <ion-card text-center id="inner" color="primary" (click)="addToOrder()"><p style="vertical-align: center; font-size: 125%;">Add to Order</p></ion-card>
+  </ion-card>
 </ion-content>

@@ -8,5 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-item *ngFor="let orderItem of currOrder.items">
+    <ion-title>{{orderItem.name}}</ion-title>
+  </ion-item>
+  <ion-text>
+    Total Items: {{currOrder.totalItems}}
+  </ion-text>
 </ion-content>

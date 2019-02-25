@@ -8,24 +8,28 @@ import { Item } from '../list/list.page';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  public orderList: order[];
-  public currentOrder: order;
+  allOrders: orders;
   constructor(private route: Router) {
-    this.orderList = [];
-    this.currentOrder = null;
-    this.createOrder(0);
-    this.createOrder(0);
-    this.createOrder(0);
+    this.allOrders = JSON.parse(localStorage.getItem('orders'));
   }
   ngOnInit() {
+  }
+
+  goToOrder(x: order) {
+    this.route.navigate(['/order-detail', {selectedOrder: x}]);
+  }
+}
+export class orders {
+  public orderList: order[];
+  public currentOrder: order;
+  constructor() {
+    this.orderList = [];
+    this.createOrder(0);
   }
   createOrder(orderDate: number) {
     var tOrder: order = new order(orderDate);
     this.orderList.push(tOrder);
     this.currentOrder = tOrder;
-  }
-  goToOrder(x: order) {
-    this.route.navigate(['/order-detail', {selectedOrder: x}]);
   }
 }
 export class order {
