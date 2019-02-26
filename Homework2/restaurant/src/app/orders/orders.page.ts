@@ -15,7 +15,11 @@ export class OrdersPage implements OnInit {
   ngOnInit() {
   }
   goToOrder(x: order) {
-    this.route.navigate(['/order-detail', {selectedOrder: x}]);
+    if(x.totalItems > 0) {
+      this.route.navigate(['/order-detail', {selectedOrder: JSON.stringify(x)}]);
+    } else {
+      alert("This order is has no items. Go to the home page and navigate to the items you would like to add to your order.");
+    }
   }
 }
 export class orders {
@@ -28,10 +32,11 @@ export class orders {
   createOrder(orderDate: number) {
     var tOrder: order = new order(orderDate);
     this.orderList.push(tOrder);
-    this.currentOrder = tOrder;
+    this.currentOrder = this.orderList[this.orderList.length-1];
   }
   addAnItem(x: Item) {
     this.currentOrder.addAnItem(x);
+    this.orderList[this.orderList.length-1] = this.currentOrder;
   }
 }
 export class order {
