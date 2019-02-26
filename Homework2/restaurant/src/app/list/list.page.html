@@ -24,7 +24,7 @@
   <ion-card>
     <ion-item  class="forum">
       <pre>Category: </pre>
-      <ion-select slot="end" [(ngModel)]="category">
+      <ion-select slot="end" [(ngModel)]="category" interface="alert">
         <ion-select-option>Breakfast</ion-select-option>
         <ion-select-option>Lunch</ion-select-option>
         <ion-select-option>Dinner</ion-select-option>
@@ -46,7 +46,11 @@
       <ion-input type="url" [(ngModel)]="photoUrl"></ion-input>
     </ion-item>
   </ion-card>
-  <ion-card (click)="createItem()" id="buton" text-center>
-    <ion-card-title>Submit</ion-card-title>
-  </ion-card>
+  <ion-row center align-items-center>
+    <ion-col text-center align-items-center>
+      <ion-button (click)="createItem()" id="buton" color="primary" style="min-height: 30px;" text-center>
+        Submit
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

@@ -15,6 +15,10 @@
     </ion-card-title>
     <ion-text>{{item.category}}</ion-text>
     <p>{{item.description}}</p>
-    <ion-card text-center id="inner" color="primary" (click)="addToOrder()"><p style="vertical-align: center; font-size: 125%;">Add to Order</p></ion-card>
+    <ion-row center align-items-center>
+      <ion-col text-center align-items-center>
+        <ion-button size="medium" (click)="addToOrder()">Add to Order</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>

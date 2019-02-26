@@ -9,11 +9,13 @@
 
 <ion-content padding>
   <ion-list *ngFor="let ord of allOrders.orderList">
-    <ion-card (click)="goToOrder(ord)">
-      <ion-card-title>
+    <ion-item (click)="goToOrder(ord)">
+      <ion-title text-left>
         Total Items: {{ord.totalItems}}
+      </ion-title>
+      <ion-title text-right>
         Total Price: $ {{ord.totalPrice}}
-      </ion-card-title>
-    </ion-card>
+      </ion-title>
+    </ion-item>
   </ion-list>
 </ion-content>
