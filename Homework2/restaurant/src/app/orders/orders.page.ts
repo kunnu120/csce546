@@ -14,7 +14,6 @@ export class OrdersPage implements OnInit {
   }
   ngOnInit() {
   }
-
   goToOrder(x: order) {
     this.route.navigate(['/order-detail', {selectedOrder: x}]);
   }
@@ -31,6 +30,9 @@ export class orders {
     this.orderList.push(tOrder);
     this.currentOrder = tOrder;
   }
+  addAnItem(x: Item) {
+    this.currentOrder.addAnItem(x);
+  }
 }
 export class order {
   public items: Item[];
@@ -43,7 +45,7 @@ export class order {
     this.totalPrice = 0;
     this.date = orderDate;
   }
-  public addItem(x: Item) {
+  addAnItem(x: Item) {
     this.items.push(x);
     this.totalItems++;
     this.totalPrice += x.price;

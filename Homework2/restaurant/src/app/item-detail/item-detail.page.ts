@@ -11,6 +11,7 @@ import { orders, order } from '../orders/orders.page';
 export class ItemDetailPage implements OnInit {
   public item: Item;
   public typeOfMenu: string;
+  public Orders: orders;
   constructor(private route: Router, private r: ActivatedRoute) {
     this.r.params.subscribe(params => {this.item = JSON.parse(params['selectedItem']);});
     this.r.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
@@ -19,8 +20,11 @@ export class ItemDetailPage implements OnInit {
   ngOnInit() {
   }
   addToOrder() {
-    localStorage.setItem('orders', JSON.stringify(JSON.parse(localStorage.getItem('orders')).currentOrder.addItem(this.item)));
-    console.log("click");
+    this.Orders = JSON.parse(localStorage.getItem('orders'));
+    this.Orders.currentOrder.items.push(this.item);
+    this.Orders.currentOrder.totalItems++;
+    this.Orders.currentOrder.totalPrice += this.item.price;
+    localStorage.setItem('orders', JSON.stringify(this.Orders));
   }
   goBack() {
     this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
