@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>Order Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngFor="let orderItem of currOrder.items">
+    <ion-title text-left>{{orderItem.name}}</ion-title>
+    <ion-title text-right>$ {{orderItem.price}}</ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title text-left style="font-size: 125%;">
+      Total Items: {{currOrder.totalItems}}
+    </ion-title>
+    <ion-title text-right style="font-size: 125%;">
+      Total Price: $ {{currOrder.totalPrice}}
+    </ion-title>
+  </ion-item>
+  <ion-row center align-items-center>
+    <ion-col text-center align-items-center>
+      <ion-button size="medium" (click)="newOrder()">Checkout</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

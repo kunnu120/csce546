@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title text-center>{{typeOfMenu}} Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-img src="{{item.photo}}"></ion-img>
+    <ion-card-title style="font-size: 200%; height: 30vh;">
+      <pre>{{item.name}}    {{item.price}}</pre>
+    </ion-card-title>
+    <ion-text>{{item.category}}</ion-text>
+    <p>{{item.description}}</p>
+    <ion-row center align-items-center>
+      <ion-col text-center align-items-center>
+        <ion-button size="medium" (click)="addToOrder()">Add to Order</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
