@@ -6,19 +6,20 @@
     <ion-title text-center>{{typeOfMenu}} Item</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content padding>
-  <ion-card>
-    <ion-img src="{{item.photo}}"></ion-img>
-    <ion-card-title style="font-size: 200%; height: 30vh;">
-      <pre>{{item.name}}    {{item.price}}</pre>
-    </ion-card-title>
-    <ion-text>{{item.category}}</ion-text>
-    <p>{{item.description}}</p>
-    <ion-row center align-items-center>
-      <ion-col text-center align-items-center>
-        <ion-button size="medium" (click)="addToOrder()">Add to Order</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-</ion-content>
+<body>
+  <ion-content padding>
+    <ion-card>
+      <ion-img src="{{item.photo}}"></ion-img>
+      <ion-card-title style="font-size: 200%; padding-left: 5px;">
+        <pre>{{item.name}}    {{item.price}}</pre>
+      </ion-card-title>
+      <ion-text style="padding-left: 15px;">{{item.category}}</ion-text>
+      <p style="padding-left: 15px; font-weight: 600;">{{item.description}}</p>
+      <ion-row center align-items-center>
+        <ion-col text-center align-items-center>
+          <ion-button size="medium" (click)="addToOrder()">Add to Order</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-content>
+</body>

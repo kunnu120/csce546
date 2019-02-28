@@ -26,7 +26,7 @@ export class ItemDetailPage implements OnInit {
     Orders.currentOrder.totalPrice += this.item.price;
     Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
     localStorage.setItem('orders', JSON.stringify(Orders));
-    // console.log(localStorage.getItem('orders'));
+    alert("This item has been added to order.");
   }
   goBack() {
     this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
