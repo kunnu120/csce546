@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { orders } from './orders/orders.page';
 import { Item } from './list/list.page';
-
+import * as firebase from 'firebase/';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -35,9 +35,8 @@ export class AppModule {
   public dessertItems: Array<Item>;
   public otherItems: Array<Item>;
   constructor() {
-    localStorage.clear();
     this.listOfOrders = new orders();
-    localStorage.setItem('orders', JSON.stringify(this.listOfOrders));
+    firebase.database().ref('orders').push().set(JSON.stringify(this.listOfOrders));
     this.breakfastItems = [];
     this.lunchItems = [];
     this.dinnerItems = [];
