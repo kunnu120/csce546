@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input type="text">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Date of Birth</ion-label>
+      <ion-datetime display-format="YYYY-MM-DD" picker-format="YYYY MMMM DD" max="2001"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="password">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button>Sign Up</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

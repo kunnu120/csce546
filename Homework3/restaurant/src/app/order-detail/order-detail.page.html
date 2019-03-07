@@ -8,20 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item *ngFor="let orderItem of currOrder.items">
+  <ion-item *ngFor="let orderItem of currOrderShortened; let num = index">
     <ion-title text-left>{{orderItem.name}}</ion-title>
-    <ion-title text-right>$ {{orderItem.price}}</ion-title>
+    <ion-title text-right>{{numOfItems[num]}} x  $ {{orderItem.price}}</ion-title>
   </ion-item>
   <ion-item>
-    <ion-title text-left style="font-size: 125%;">
+    <ion-title text-left>
       Total Items: {{currOrder.totalItems}}
     </ion-title>
-    <ion-title text-right style="font-size: 125%;">
+    <ion-title text-right>
       Total Price: $ {{currOrder.totalPrice}}
     </ion-title>
   </ion-item>
-  <ion-row center align-items-center>
-    <ion-col text-center align-items-center>
+  <ion-row>
+    <ion-col text-center>
       <ion-button size="medium" (click)="newOrder()">Checkout</ion-button>
     </ion-col>
   </ion-row>

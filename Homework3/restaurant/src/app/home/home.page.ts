@@ -31,7 +31,4 @@ export class HomePage {
   addItem() {
     this.route.navigate(['/list']);
   }
-  new() {
-    
-  }
 }

@@ -11,9 +11,11 @@ import { orders, order } from '../orders/orders.page';
 export class ItemDetailPage implements OnInit {
   public item: Item;
   public typeOfMenu: string;
+  quantity: number;
   constructor(private route: Router, private r: ActivatedRoute) {
     this.r.params.subscribe(params => {this.item = JSON.parse(params['selectedItem']);});
     this.r.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
+    this.quantity = 1;
   }
 
   ngOnInit() {
@@ -21,12 +23,18 @@ export class ItemDetailPage implements OnInit {
   addToOrder() {
     var Orders: orders;
     Orders = JSON.parse(localStorage.getItem('orders'));
-    Orders.currentOrder.items.push(this.item);
-    Orders.currentOrder.totalItems++;
-    Orders.currentOrder.totalPrice += this.item.price;
-    Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
+    for(var i:number=0; i<this.quantity; i++) {
+      Orders.currentOrder.items.push(this.item);
+      Orders.currentOrder.totalItems++;
+      Orders.currentOrder.totalPrice += this.item.price;
+      Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
+    }
     localStorage.setItem('orders', JSON.stringify(Orders));
-    alert("This item has been added to order.");
+    if(this.quantity > 1) {
+      alert("These items has been added to your order.");
+    } else if(this.quantity == 1) {
+      alert("This item has been added to your` order.");
+    }
   }
   goBack() {
     this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
