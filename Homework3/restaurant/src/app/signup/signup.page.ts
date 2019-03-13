@@ -7,12 +7,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-
-  constructor(private route: Router) { }
+  email: string;
+  name: string;
+  username: string;
+  birthDate: string;
+  password: string;
+  confirmPassword: string;
+  constructor(private route: Router) {
+    this.email = "";
+    this.name = "";
+    this.username = "";
+    this.birthDate = "";
+    this.password = "";
+    this.confirmPassword = "";
+  }
 
   ngOnInit() {
   }
   goBack() {
     this.route.navigate(['/login']);
+  }
+  signUp() {
+    if(this.password == this.confirmPassword) {
+      
+    } else {
+      alert("The passwords don't match.")
+    }
   }
 }
