@@ -11,11 +11,11 @@
   <ion-list *ngFor="let ord of allOrders.orderList">
     <ion-card>
       <ion-item (click)="goToOrder(ord)" color="light">
-        <ion-title text-left color="dark">
+        <ion-title text-left color="dark" style="overflow-x: scroll;">
           Total Items: {{ord.totalItems}}
         </ion-title>
-        <ion-title text-right color="dark">
-          Total Price: $ {{ord.totalPrice}}
+        <ion-title text-right color="dark" style="overflow-x: scroll;">
+          Total Price: $ {{ord.totalPrice | number:'1.2-2'}}
         </ion-title>
       </ion-item>
     </ion-card>

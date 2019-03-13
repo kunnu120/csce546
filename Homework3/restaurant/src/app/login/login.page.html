@@ -10,14 +10,14 @@
 <ion-content padding>
   <ion-card>
     <ion-item color="light">
-      <ion-icon slot="start" name="mail" size="large"></ion-icon>
+      <ion-icon slot="start" name="mail" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Email</ion-label>
       <ion-input required [(ngModel)]="email"></ion-input>
     </ion-item>
   </ion-card>
   <ion-card>
     <ion-item color="light">
-      <ion-icon slot="start" name="key" size="large"></ion-icon>
+      <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" required [(ngModel)]="password"></ion-input>
     </ion-item>
@@ -29,15 +29,15 @@
   </ion-row>
   <ion-row>
     <ion-col text-center>
-      <ion-button color="light">
+      <ion-button color="light" (click)="loginGoogle()">
         Login
-        <ion-icon slot="start" name="logo-google" (click)="loginGoogle()"></ion-icon>
+        <ion-icon slot="start" name="logo-google"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col text-center>
-      <ion-button color="primary">
+      <ion-button color="primary" (click)="loginFacebook()">
         Login
         <ion-icon slot="start" name="logo-facebook"></ion-icon>
       </ion-button>

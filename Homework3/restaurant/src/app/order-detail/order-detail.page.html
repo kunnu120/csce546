@@ -10,14 +10,14 @@
 <ion-content padding>
   <ion-item *ngFor="let orderItem of currOrderShortened; let num = index">
     <ion-title text-left>{{orderItem.name}}</ion-title>
-    <ion-title text-right>{{numOfItems[num]}} x  $ {{orderItem.price}}</ion-title>
+    <ion-title text-right>{{numOfItems[num]}} x  $ {{orderItem.price | number:'1.2-2'}}</ion-title>
   </ion-item>
   <ion-item>
     <ion-title text-left>
       Total Items: {{currOrder.totalItems}}
     </ion-title>
     <ion-title text-right>
-      Total Price: $ {{currOrder.totalPrice}}
+      Total Price: $ {{currOrder.totalPrice | number:'1.2-2'}}
     </ion-title>
   </ion-item>
   <ion-row>

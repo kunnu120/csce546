@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
-import { MenuController } from '@ionic/angular';
+// import { MenuController } from '@ionic/angular';
 import * as firebase from 'firebase';
 
 @Component({
@@ -19,26 +19,37 @@ export class LoginPage{
     if(this.email == "" || this.password == "") {
       alert("Please enter an Username and/or Password");
     } else {
-      var a: boolean;
-      console.clear();
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function() {
-        a = true;
-        console.log(a+"1");
-      }).catch(function() {
+      var a: boolean = true;
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function() {
         a = false;
-        console.log(a+"2");
         alert("The Email and/or Password you entered is/are incorrect.");
       });
-      console.log(a+"3");
       if(a) {
         this.route.navigate(['/home']);
-        this.email = "";
-        this.password = "";
       }
+      this.email = "";
+      this.password = "";
     }
   }
   loginGoogle() {
     var loginInfo = new firebase.auth.GoogleAuthProvider();
+    var a: boolean = true;
+    firebase.auth().signInWithPopup(loginInfo).catch(function() {
+      a = false;
+    });
+    if(a) {
+      this.route.navigate(['/home']);
+    }
+  }
+  loginFacebook() {
+    var loginInfo = new firebase.auth.FacebookAuthProvider();
+    var a: boolean = true;
+    firebase.auth().signInWithPopup(loginInfo).catch(function() {
+      a = false;
+    });
+    if(a) {
+      this.route.navigate(['/home']);
+    }
   }
   signUp() {
     this.route.navigate(['/signup']);

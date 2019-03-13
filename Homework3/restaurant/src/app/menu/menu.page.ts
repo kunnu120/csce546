@@ -15,10 +15,7 @@ export class MenuPage implements OnInit {
     this.route.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
     this.menuItems = [];
     firebase.database().ref(this.typeOfMenu).on('value', function(snapshot) {
-      snapshot.forEach(el => {
-        var temp = <any> el;
-        this.menuItems.push(new Item(temp.name, temp.price, temp.category, temp.description, temp.photoUrl));
-      });
+      
     });
   }
   goBack() {

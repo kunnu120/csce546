@@ -9,8 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { orders } from './orders/orders.page';
-import { Item } from './list/list.page';
-// import { firebase } from 'firebaseui-angular';
 import * as firebase from 'firebase';
 
 @NgModule({
