@@ -8,14 +8,21 @@ import * as firebase from 'firebase';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
 })
+
+
 export class MenuPage implements OnInit {
-  typeOfMenu: string;
-  menuItems: Item [];
+  public typeOfMenu: string;
+  public menuItems: Item [];
   constructor(private route: ActivatedRoute, private r: Router) {
     this.route.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
     this.menuItems = [];
     firebase.database().ref(this.typeOfMenu).on('value', function(snapshot) {
-      
+      snapshot.forEach(function(cShot) {
+        var k = cShot.key;
+        firebase.database().ref(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))).child(k).on('value', function(items) {
+          console.log(items.val());
+        });
+      });
     });
   }
   goBack() {
