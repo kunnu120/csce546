@@ -13,6 +13,7 @@ export class SignupPage implements OnInit {
   birthDate: string;
   password: string;
   confirmPassword: string;
+  userType: string;
   constructor(private route: Router) {
     this.email = "";
     this.name = "";
@@ -20,6 +21,7 @@ export class SignupPage implements OnInit {
     this.birthDate = "";
     this.password = "";
     this.confirmPassword = "";
+    this.userType = "";
   }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class SignupPage implements OnInit {
   }
   signUp() {
     if(this.password == this.confirmPassword) {
-      
+
     } else {
       alert("The passwords don't match.")
     }

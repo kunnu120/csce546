@@ -9,18 +9,19 @@ import * as firebase from 'firebase';
   styleUrls: ['./menu.page.scss'],
 })
 
-
 export class MenuPage implements OnInit {
   public typeOfMenu: string;
-  public menuItems: Item [];
+  public static menuItems: Item [];
+  public instance = MenuPage;
   constructor(private route: ActivatedRoute, private r: Router) {
     this.route.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
-    this.menuItems = [];
+    MenuPage.menuItems = [];
     firebase.database().ref(this.typeOfMenu).on('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
         var k = cShot.key;
         firebase.database().ref(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))).child(k).on('value', function(items) {
-          console.log(items.val());
+          let x = items.val();
+          MenuPage.menuItems.push(new Item(x.name, x.price, x.category, x.description, x.photo));
         });
       });
     });

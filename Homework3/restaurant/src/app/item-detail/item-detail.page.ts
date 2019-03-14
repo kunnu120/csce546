@@ -33,7 +33,7 @@ export class ItemDetailPage implements OnInit {
     if(this.quantity > 1) {
       alert("These items has been added to your order.");
     } else if(this.quantity == 1) {
-      alert("This item has been added to your` order.");
+      alert("This item has been added to your order.");
     }
   }
   goBack() {

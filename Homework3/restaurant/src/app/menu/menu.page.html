@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor="let menuItem of menuItems">
+  <ion-list *ngFor="let menuItem of instance.menuItems">
     <ion-card color="primary" color="light" (click)="goToItem(menuItem)">
       <ion-img src="{{menuItem.photo}}"></ion-img>
       <ion-card-header>

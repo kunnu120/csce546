@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-list',
@@ -26,10 +27,8 @@ export class ListPage implements OnInit {
     this.route.navigate(['/home'])
   }
   createItem() {
-    var array: Item [] = JSON.parse(localStorage.getItem(this.category));
     var tItem = new Item(this.itemName, this.price, this.category, this.description, this.photoUrl);
-    array.push(tItem);
-    localStorage.setItem(this.category, JSON.stringify(array));
+    firebase.database().ref(this.category).push(tItem);
     this.itemName = "";
     this.price = null;
     this.category = "";

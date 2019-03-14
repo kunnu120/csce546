@@ -41,6 +41,16 @@
   </ion-card>
   <ion-card>
     <ion-item>
+      <ion-icon slot="start" name="person-add" size="large"></ion-icon>
+      <ion-label position="floating">User Type</ion-label>
+      <ion-select slot="end" [(ngModel)]="userType" interface="alert">
+        <ion-select-option>Visitor</ion-select-option>
+        <ion-select-option>Store Owner</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
       <ion-icon slot="start" name="key" size="large"></ion-icon>
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" [(ngModel)]="password">

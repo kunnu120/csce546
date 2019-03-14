@@ -39,7 +39,6 @@ export class AppModule {
     };
     firebase.initializeApp(config);
     this.listOfOrders = new orders();
-    localStorage.setItem('orders', JSON.stringify(this.listOfOrders));
     // firebase.database().ref('orders').push().set(JSON.stringify(this.listOfOrders));
     // firebase.database().ref('Breakfast').push(new Item('Dosa', 5.25, 'Breakfast', 'dosa', '/assets/Breakfast.jpg'));
     // firebase.database().ref('Lunch').push(new Item('Biryani', 12.75, 'Lunch', 'dosa', '/assets/Breakfast.jpg'));

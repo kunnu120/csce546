@@ -4,5 +4,8 @@ ion-card {
   transform: translateX(-50%);
   position: relative;
   padding-left: 0px;
-  min-height: 10vh;
+  height: 10vh;
+  ion-title {
+    font-size: 2vh;
+  }
 }
