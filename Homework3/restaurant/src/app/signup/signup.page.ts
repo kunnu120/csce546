@@ -31,7 +31,7 @@ export class SignupPage implements OnInit {
   }
   signUp() {
     if(this.password == this.confirmPassword) {
-
+      
     } else {
       alert("The passwords don't match.")
     }
