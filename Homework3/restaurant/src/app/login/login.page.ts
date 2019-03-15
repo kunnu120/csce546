@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router} from '@angular/router'
 // import { MenuController } from '@ionic/angular';
 import * as firebase from 'firebase';
 
@@ -11,22 +11,21 @@ import * as firebase from 'firebase';
 export class LoginPage{
   email: string;
   password: string;
-  constructor(private route: Router, private r: ActivatedRoute) {
+  public static rt: string;
+  constructor(private route: Router) {
     this.email = "";
     this.password = "";
+    LoginPage.rt = "/home";
   }
   login() {
     if(this.email == "" || this.password == "") {
       alert("Please enter an Username and/or Password");
     } else {
-      var a: boolean = true;
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function() {
-        a = false;
+        LoginPage.rt = "/";
         alert("The Email and/or Password you entered is/are incorrect.");
       });
-      if(a) {
-        this.route.navigate(['/home']);
-      }
+      this.route.navigate([LoginPage.rt]);
       this.email = "";
       this.password = "";
     }
