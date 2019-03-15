@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor="let ord of OrdersPage.allOrders.orderList">
-    <ion-card>
-      <ion-item (click)="goToOrder(ord)" color="light">
+  <ion-list *ngFor="let ord of self.allOrders.orderList">
+    <ion-card (click)="goToOrder(ord)">
+      <ion-item color="light">
         <ion-title text-left color="dark">
           Total Items: {{ord.totalItems}}
         </ion-title>

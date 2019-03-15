@@ -10,15 +10,17 @@ import * as firebase from 'firebase';
 })
 export class OrdersPage implements OnInit {
   public static allOrders: orders;
+  public self = OrdersPage;
   constructor(private route: Router) {
+    OrdersPage.allOrders = new orders();
     firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
         var k = cShot.key;
-        console.log(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/')).child(k));
-        // firebase.database().ref(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))).child(k).on('value', function(items) {
-        //   let x = items.val();
-        //   console.log(x);
-        // });
+        firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
+          var m = cSnap.val();
+          OrdersPage.allOrders = JSON.parse(m);
+          console.log(OrdersPage.allOrders);
+        });
       });
     });
   }

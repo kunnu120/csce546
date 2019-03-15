@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from '../list/list.page';
 import { orders, order } from '../orders/orders.page';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-item-detail',
@@ -21,15 +22,31 @@ export class ItemDetailPage implements OnInit {
   ngOnInit() {
   }
   addToOrder() {
-    var Orders: orders;
-    Orders = JSON.parse(localStorage.getItem('orders'));
+    var Orders: orders = new orders();
+    firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        var k = cShot.key;
+        firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
+          var m = cSnap.val();
+          Orders = JSON.parse(m);
+          console.log(Orders);
+        });
+      });
+    });
     for(var i:number=0; i<this.quantity; i++) {
       Orders.currentOrder.items.push(this.item);
       Orders.currentOrder.totalItems++;
       Orders.currentOrder.totalPrice += this.item.price;
       Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
     }
-    localStorage.setItem('orders', JSON.stringify(Orders));
+    firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        var k = cShot.key;
+        var s = {};
+        s[k] = JSON.stringify(Orders);
+        firebase.database().ref('Orders'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).update(s);
+      });
+    });
     if(this.quantity > 1) {
       alert("These items has been added to your order.");
     } else if(this.quantity == 1) {
