@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from '../list/list.page';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-orders',
@@ -8,9 +9,18 @@ import { Item } from '../list/list.page';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  public allOrders: orders;
+  public static allOrders: orders;
   constructor(private route: Router) {
-    this.allOrders = JSON.parse(localStorage.getItem('orders'));
+    firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        var k = cShot.key;
+        console.log(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/')).child(k));
+        // firebase.database().ref(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))).child(k).on('value', function(items) {
+        //   let x = items.val();
+        //   console.log(x);
+        // });
+      });
+    });
   }
   ngOnInit() {
   }
