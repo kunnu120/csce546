@@ -13,7 +13,7 @@ export class HomePage {
   userID: string;
   constructor(private route: Router) {
     this.userID = firebase.auth().currentUser.uid;
-    // firebase.database().ref('Orders/'+this.userID).push(JSON.stringify(new orders()));
+    firebase.database().ref('Orders/'+this.userID).push(new orders());
   }
   menuBreakfast() {
     this.route.navigate(['/menu', {menuType: 'Breakfast'}]);

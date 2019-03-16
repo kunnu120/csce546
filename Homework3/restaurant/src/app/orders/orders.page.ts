@@ -18,8 +18,7 @@ export class OrdersPage implements OnInit {
         var k = cShot.key;
         firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
           var m = cSnap.val();
-          OrdersPage.allOrders = JSON.parse(m);
-          console.log(OrdersPage.allOrders);
+          console.log(m);
         });
       });
     });

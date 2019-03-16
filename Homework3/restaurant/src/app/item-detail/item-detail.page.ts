@@ -22,37 +22,31 @@ export class ItemDetailPage implements OnInit {
   ngOnInit() {
   }
   addToOrder() {
-    var Orders: orders = new orders();
-    firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
-      snapshot.forEach(function(cShot) {
-        var k = cShot.key;
-        firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
-          var m = cSnap.val();
-          // console.log(JSON.parse(m));
-          Orders = m;
-        });
-      });
-    });
+    // var Orders: orders = new orders();
+    // var k = [];
+    // firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+    //   snapshot.forEach(function(cShot) {
+    //     k.push(cShot.key);
+    //     firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k[k.length-1]).on('value', function(cSnap) {
+    //       var m = cSnap.val();
+    //       // console.log(JSON.parse(m));
+    //       Orders = m;
+    //     });
+    //   });
+    // });
+    // for(var i:number=0; i<this.quantity; i++) {
+    //   Orders.currentOrder.items.push(this.item);
+    //   Orders.currentOrder.totalItems++;
+    //   Orders.currentOrder.totalPrice += this.item.price;
+    //   Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
+    // }
     // console.log(Orders);
-    for(var i:number=0; i<this.quantity; i++) {
-      Orders.currentOrder.items.push(this.item);
-      Orders.currentOrder.totalItems++;
-      Orders.currentOrder.totalPrice += this.item.price;
-      Orders.orderList[Orders.orderList.length-1] = Orders.currentOrder;
-    }
-    firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
-      snapshot.forEach(function(cShot) {
-        var k = cShot.key.toString();
-        firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).set({
-          k : JSON.stringify(Orders)
-        });
-      });
-    });
-    if(this.quantity > 1) {
-      alert("These items has been added to your order.");
-    } else if(this.quantity == 1) {
-      alert("This item has been added to your order.");
-    }
+    // firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).push(JSON.stringify(Orders));
+    // if(this.quantity > 1) {
+    //   alert("These items has been added to your order.");
+    // } else if(this.quantity == 1) {
+    //   alert("This item has been added to your order.");
+    // }
   }
   goBack() {
     this.route.navigate(['/menu', {menuType: this.typeOfMenu}]);
