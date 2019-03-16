@@ -28,11 +28,12 @@ export class ItemDetailPage implements OnInit {
         var k = cShot.key;
         firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
           var m = cSnap.val();
-          Orders = JSON.parse(m);
-          console.log(Orders);
+          // console.log(JSON.parse(m));
+          Orders = m;
         });
       });
     });
+    // console.log(Orders);
     for(var i:number=0; i<this.quantity; i++) {
       Orders.currentOrder.items.push(this.item);
       Orders.currentOrder.totalItems++;
@@ -41,10 +42,10 @@ export class ItemDetailPage implements OnInit {
     }
     firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
-        var k = cShot.key;
-        var s = {};
-        s[k] = JSON.stringify(Orders);
-        firebase.database().ref('Orders'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).update(s);
+        var k = cShot.key.toString();
+        firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).set({
+          k : JSON.stringify(Orders)
+        });
       });
     });
     if(this.quantity > 1) {
