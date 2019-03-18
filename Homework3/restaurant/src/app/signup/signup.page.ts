@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -21,7 +21,7 @@ export class SignupPage implements OnInit {
     this.birthDate = "";
     this.password = "";
     this.confirmPassword = "";
-    this.userType = "";
+    this.userType = "Visitor";
   }
 
   ngOnInit() {
@@ -33,5 +33,6 @@ export class SignupPage implements OnInit {
     if(this.password != this.confirmPassword) {
       alert("The passwords don't match.")
     }
+    // firebase.auth().
   }
 }
