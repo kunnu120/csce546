@@ -42,8 +42,9 @@
   <ion-card>
     <ion-item>
       <ion-icon slot="start" name="person-add" size="large" color="tertiary"></ion-icon>
+      <pre>User Type: </pre>
       <ion-label position="floating">User Type</ion-label>
-      <ion-select slot="end" [(ngModel)]="userType" interface="alert">
+      <ion-select slot="end" [(ngModel)]="userType" interface="alert" placeholder="User Type">
         <ion-select-option>Visitor</ion-select-option>
         <ion-select-option>Store Owner</ion-select-option>
       </ion-select>

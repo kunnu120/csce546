@@ -30,9 +30,7 @@ export class SignupPage implements OnInit {
     this.route.navigate(['/login']);
   }
   signUp() {
-    if(this.password == this.confirmPassword) {
-      
-    } else {
+    if(this.password != this.confirmPassword) {
       alert("The passwords don't match.")
     }
   }
