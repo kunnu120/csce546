@@ -12,7 +12,7 @@
     <ion-item>
       <ion-icon slot="start" name="mail" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email">
+      <ion-input type="email" [(ngModel)]="email" required="true">
       </ion-input>
     </ion-item>
   </ion-card>
@@ -20,15 +20,7 @@
     <ion-item>
       <ion-icon slot="start" name="person" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Full Name</ion-label>
-      <ion-input type="text" [(ngModel)]="name">
-      </ion-input>
-    </ion-item>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      <ion-icon slot="start" name="person-add" size="large" color="tertiary"></ion-icon>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" [(ngModel)]="username">
+      <ion-input type="text" [(ngModel)]="name" required="true">
       </ion-input>
     </ion-item>
   </ion-card>
@@ -41,8 +33,7 @@
   </ion-card>
   <ion-card>
     <ion-item>
-      <ion-icon slot="start" name="person-add" size="large" color="tertiary"></ion-icon>
-      <pre>User Type: </pre>
+      <ion-icon slot="start" name="person-add" size="large" color="tertiary">User Type:</ion-icon>
       <ion-label position="floating">User Type</ion-label>
       <ion-select slot="end" [(ngModel)]="userType" interface="alert">
         <ion-select-option>Visitor</ion-select-option>
@@ -54,7 +45,7 @@
     <ion-item>
       <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password">
+      <ion-input type="password" [(ngModel)]="password" required="true">
       </ion-input>
     </ion-item>
   </ion-card>
@@ -62,7 +53,7 @@
     <ion-item>
       <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Confirm Password</ion-label>
-      <ion-input type="password" [(ngModel)]="confirmPassword">
+      <ion-input type="password" [(ngModel)]="confirmPassword" required="true">
       </ion-input>
     </ion-item>
   </ion-card>

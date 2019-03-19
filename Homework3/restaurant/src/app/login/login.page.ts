@@ -32,19 +32,13 @@ export class LoginPage{
   loginGoogle() {
     var loginInfo = new firebase.auth.GoogleAuthProvider();
     var self = this;
-    firebase.auth().signInWithPopup(loginInfo).then(function() {
+    firebase.auth().signInWithPopup(loginInfo).then(function(res) {
+      var name = res.user;
+      // firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : name, 'Birth Date' : "2001-01-01", 'User Type' : "Visitor"});
+      // alert("Signed in as a Visitor.");
       self.route.navigate(['/home']);
     }).catch(function() {
       alert("Failed to Login Using Google Account.");
-    });
-  }
-  loginFacebook() {
-    var loginInfo = new firebase.auth.FacebookAuthProvider();
-    var self = this;
-    firebase.auth().signInWithPopup(loginInfo).then(function() {
-      self.route.navigate(['home']);
-    }).catch(function() {
-      alert("Failed to Login Using Facebook Account.");
     });
   }
   signUp() {

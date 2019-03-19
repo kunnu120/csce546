@@ -24,13 +24,15 @@ export class ItemDetailPage implements OnInit {
   }
   addToOrder() {
     var k = [];
+    ItemDetailPage.Orders = new orders();
     firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
         k.push(cShot.key);
+
         firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k[k.length-1]).on('value', function(cSnap) {
           var m = cSnap.val();
           // console.log(m);
-          ItemDetailPage.Orders = m;
+          ItemDetailPage.Orders = JSON.parse(m);
         });
       });
     });

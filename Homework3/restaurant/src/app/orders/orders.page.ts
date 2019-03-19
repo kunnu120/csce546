@@ -9,18 +9,15 @@ import * as firebase from 'firebase';
   styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-  public static allOrders: orders;
-  public self = OrdersPage;
+  public allOrders: orders;
   constructor(private route: Router) {
-    OrdersPage.allOrders = new orders();
+    var self = this;
+    this.allOrders = new orders();
     firebase.database().ref('Orders/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
-        var k = cShot.key;
-        firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k).on('value', function(cSnap) {
-          var m = cSnap.val();
-          OrdersPage.allOrders = m;
-          console.log(OrdersPage.allOrders);
-        });
+        var x = cShot.val();
+        self.allOrders = JSON.parse(x);
+        console.log(self.allOrders);
       });
     });
   }

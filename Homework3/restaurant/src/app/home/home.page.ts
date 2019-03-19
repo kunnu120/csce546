@@ -13,7 +13,12 @@ export class HomePage {
   userID: string;
   constructor(private route: Router) {
     this.userID = firebase.auth().currentUser.uid;
-    // firebase.database().ref('Orders/'+this.userID).set({'userOrder' : JSON.stringify(new orders())});
+    var self = this;
+    firebase.database().ref('Orders/'+this.userID).on('value', function(snapshot) {
+      if(!snapshot.exists()) {
+        firebase.database().ref('Orders/'+self.userID).set({'userOrder' : JSON.stringify(new orders())});
+      }
+    });
   }
   menuBreakfast() {
     this.route.navigate(['/menu', {menuType: 'Breakfast'}]);
