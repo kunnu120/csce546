@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-// import * as firebase from 'firebase';
+import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +21,11 @@ export class AppComponent {
       title: 'Orders',
       url: '/orders',
       icon: 'basket'
-    },
-    {
-      title: 'Logout',
-      url: '/login',
-      icon: 'log-out'
     }
   ];
 
   constructor(
+    private route: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
@@ -41,5 +38,9 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+  logOut() {
+    firebase.auth().signOut();
+    this.route.navigate(['/login']);
   }
 }

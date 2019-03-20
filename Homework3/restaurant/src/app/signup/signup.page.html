@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-item>
+    <ion-item *ngIf="googleSignUp">
       <ion-icon slot="start" name="mail" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" [(ngModel)]="email" required="true">
@@ -34,7 +34,7 @@
   <ion-card>
     <ion-item>
       <ion-icon slot="start" name="person-add" size="large" color="tertiary">User Type:</ion-icon>
-      <ion-label position="floating">User Type</ion-label>
+      <ion-text>User Type</ion-text>
       <ion-select slot="end" [(ngModel)]="userType" interface="alert">
         <ion-select-option>Visitor</ion-select-option>
         <ion-select-option>Store Owner</ion-select-option>
@@ -42,7 +42,7 @@
     </ion-item>
   </ion-card>
   <ion-card>
-    <ion-item>
+    <ion-item *ngIf="googleSignUp">
       <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" [(ngModel)]="password" required="true">
@@ -50,7 +50,7 @@
     </ion-item>
   </ion-card>
   <ion-card>
-    <ion-item>
+    <ion-item *ngIf="googleSignUp">
       <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
       <ion-label position="floating">Confirm Password</ion-label>
       <ion-input type="password" [(ngModel)]="confirmPassword" required="true">

@@ -32,16 +32,19 @@ export class LoginPage{
   loginGoogle() {
     var loginInfo = new firebase.auth.GoogleAuthProvider();
     var self = this;
-    firebase.auth().signInWithPopup(loginInfo).then(function(res) {
-      var name = res.user;
-      // firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : name, 'Birth Date' : "2001-01-01", 'User Type' : "Visitor"});
-      // alert("Signed in as a Visitor.");
-      self.route.navigate(['/home']);
+    firebase.auth().signInWithPopup(loginInfo).then(function() {
+      firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+        if(!snapshot.exists()) {
+          self.route.navigate(['/signup', {google : false}]);
+        } else {
+          self.route.navigate(['/home']);
+        }
+      });
     }).catch(function() {
       alert("Failed to Login Using Google Account.");
     });
   }
   signUp() {
-    this.route.navigate(['/signup']);
+    this.route.navigate(['/signup', {google : true}]);
   }
 }

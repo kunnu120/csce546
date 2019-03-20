@@ -11,6 +11,7 @@ import { Item } from '../list/list.page';
 })
 export class HomePage {
   userID: string;
+  owner: boolean;
   constructor(private route: Router) {
     this.userID = firebase.auth().currentUser.uid;
     var self = this;
@@ -18,6 +19,19 @@ export class HomePage {
       if(!snapshot.exists()) {
         firebase.database().ref('Orders/'+self.userID).set({'userOrder' : JSON.stringify(new orders())});
       }
+    });
+    firebase.database().ref('User Info/'+this.userID).on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        var x = cShot.key;
+        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid+'/'+x).on('value', function(cShut) {
+          var y = cShut.val();
+          if(y['User Type'] == "Visitor") {
+            self.owner = false;
+          } else if(y['User Type'] == "Store Owner") {
+            self.owner = true;
+          }
+        });
+      });
     });
   }
   menuBreakfast() {

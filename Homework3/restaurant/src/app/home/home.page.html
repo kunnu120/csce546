@@ -6,7 +6,7 @@
     <ion-title text-center>
       Menus
     </ion-title>
-    <ion-button slot="end" fill="clear" (click)="addItem()">
+    <ion-button slot="end" fill="clear" (click)="addItem()" *ngIf="owner">
       <ion-icon name="add-circle-outline" color="dark" size="medium" style="font-size: 175%;"></ion-icon>
     </ion-button>
   </ion-toolbar>
