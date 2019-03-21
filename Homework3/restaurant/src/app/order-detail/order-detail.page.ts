@@ -26,7 +26,6 @@ export class OrderDetailPage implements OnInit {
           ind = j;
         }
       }
-      // console.log(ind);
       if(ind != -1) {
         this.numOfItems[ind]++;
       } else {

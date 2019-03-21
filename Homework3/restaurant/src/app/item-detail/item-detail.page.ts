@@ -31,7 +31,6 @@ export class ItemDetailPage implements OnInit {
 
         firebase.database().ref('Orders/'+cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))+'/'+k[k.length-1]).on('value', function(cSnap) {
           var m = cSnap.val();
-          // console.log(m);
           ItemDetailPage.Orders = JSON.parse(m);
         });
       });
