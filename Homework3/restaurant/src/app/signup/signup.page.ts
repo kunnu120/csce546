@@ -49,6 +49,5 @@ export class SignupPage implements OnInit {
         alert(error);
       });
     }
-    // firebase.auth().
   }
 }
