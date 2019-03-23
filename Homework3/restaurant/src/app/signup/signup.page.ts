@@ -21,12 +21,20 @@ export class SignupPage implements OnInit {
     this.password = "";
     this.confirmPassword = "";
     this.userType = "";
-    this.r.params.subscribe(params => {this.googleSignUp = params['google'];});
+    this.googleSignUp = true;
+    if(firebase.auth().currentUser != null) {
+      this.googleSignUp = false;
+      console.log(firebase.auth().currentUser.uid);
+    }
   }
 
   ngOnInit() {
+
   }
   goBack() {
+    if(!this.googleSignUp) {
+      firebase.auth().signOut();
+    }
     this.route.navigate(['/login']);
   }
   signUp() {

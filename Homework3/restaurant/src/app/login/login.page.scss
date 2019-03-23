@@ -4,5 +4,32 @@ ion-card {
   transform: translateX(-50%);
   position: relative;
   padding-left: 0px;
-  min-height: 7vh;
+  height: 7vh;
+}
+ion-header {
+  padding: 0px;
+}
+#back {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  background-size: cover;
+}
+#action {
+  width: 100%;
+  height: 50%;
+  padding: 0px;
+  top: 40%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  position: relative;
+}
+#des {
+  background: black;
+  max-width: 500px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 42.5%;
+  text-align: center;
 }

@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar animated="true" placeholder="Search Menu Items" [(ngModel)]="searchWord" (ionInput)="searchMenuItems()" (ionClear)="reset()"></ion-searchbar>
   <ion-list *ngFor="let menuItem of instance.menuItems">
     <ion-card color="primary" color="light" (click)="goToItem(menuItem)">
       <ion-img src="{{menuItem.photo}}"></ion-img>

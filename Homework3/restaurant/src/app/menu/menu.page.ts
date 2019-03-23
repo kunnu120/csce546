@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from '../list/list.page';
 import * as firebase from 'firebase';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -9,10 +10,11 @@ import * as firebase from 'firebase';
   styleUrls: ['./menu.page.scss'],
 })
 
-export class MenuPage implements OnInit {
+export class MenuPage {
   public typeOfMenu: string;
   public static menuItems: Item [];
   public instance = MenuPage;
+  public searchWord: string;
   constructor(private route: ActivatedRoute, private r: Router) {
     this.route.params.subscribe(params => {this.typeOfMenu = params['menuType'];});
     MenuPage.menuItems = [];
@@ -25,6 +27,7 @@ export class MenuPage implements OnInit {
         });
       });
     });
+    this.searchWord = "";
   }
   goBack() {
     this.r.navigate(['/home'])
@@ -32,7 +35,21 @@ export class MenuPage implements OnInit {
   goToItem(x: Item) {
     this.r.navigate(['/item-detail', {selectedItem: JSON.stringify(x), menuType: this.typeOfMenu}]);
   }
-  ngOnInit() {
-
+  searchMenuItems() {
+    MenuPage.menuItems = MenuPage.menuItems.filter((item) => {
+      return item.name.toLowerCase().indexOf(this.searchWord.toLowerCase())>-1;
+    });
+  }
+  reset() {
+    MenuPage.menuItems = [];
+    firebase.database().ref(this.typeOfMenu).on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        var k = cShot.key;
+        firebase.database().ref(cShot.ref.parent.toString().substring(cShot.ref.parent.toString().lastIndexOf('/'))).child(k).on('value', function(items) {
+          let x = items.val();
+          MenuPage.menuItems.push(new Item(x.name, x.price, x.category, x.description, x.photo));
+        });
+      });
+    });
   }
 }
