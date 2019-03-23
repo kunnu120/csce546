@@ -36,6 +36,7 @@ export class MenuPage {
     this.r.navigate(['/item-detail', {selectedItem: JSON.stringify(x), menuType: this.typeOfMenu}]);
   }
   searchMenuItems() {
+    this.reset();
     MenuPage.menuItems = MenuPage.menuItems.filter((item) => {
       return item.name.toLowerCase().indexOf(this.searchWord.toLowerCase())>-1;
     });
