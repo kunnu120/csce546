@@ -9,8 +9,9 @@
     <ion-button slot="end" fill="clear" (click)="addItem()" *ngIf="owner">
       <ion-icon name="add-circle-outline" color="dark" size="medium" style="font-size: 175%;"></ion-icon>
     </ion-button>
-    <ion-button slot="end" fill="clear" (click)="storeSettings()" *ngIf="owner">
-      <ion-icon name="settings" color="dark" size="medium" style="font-size: 175%;"></ion-icon>
+    <ion-button slot="end" fill="clear" (click)="storeSettings()" color="dark">
+      Info.
+      <ion-icon slot="start" name="more" color="dark" size="medium" style="font-size: 175%;"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>

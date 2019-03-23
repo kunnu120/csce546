@@ -37,6 +37,9 @@ export class MenuPage {
   }
   searchMenuItems() {
     this.reset();
+    if(!this.searchWord) {
+      return;
+    }
     MenuPage.menuItems = MenuPage.menuItems.filter((item) => {
       return item.name.toLowerCase().indexOf(this.searchWord.toLowerCase())>-1;
     });
