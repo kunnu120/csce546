@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="content">
+    <ion-card>
+      <ion-item *ngIf="googleSignUp">
+        <ion-icon slot="start" name="mail" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email" required="true">
+        </ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon slot="start" name="person" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Full Name</ion-label>
+        <ion-input type="text" [(ngModel)]="name" required="true">
+        </ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon slot="start" name="calendar" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Date of Birth</ion-label>
+        <ion-datetime display-format="YYYY-MM-DD" picker-format="YYYY MMMM DD" max="2001" [(ngModel)]="birthDate"></ion-datetime>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item *ngIf="googleSignUp">
+        <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" required="true">
+        </ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item *ngIf="googleSignUp">
+        <ion-icon slot="start" name="key" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" [(ngModel)]="confirmPassword" required="true">
+        </ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="signUp()">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

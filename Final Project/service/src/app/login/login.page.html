@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" fill="solid" (click)="signUp()">
+        <ion-icon name="person-add" slot="start"></ion-icon>
+        Sign Up
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <div id="content">
+    <ion-card>
+      <ion-item>
+        <ion-icon name="mail" slot="start" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="key" slot="start" size="large" color="tertiary"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button color="tertiary" (click)="login()">
+          Login
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button color="light">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          Login
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
