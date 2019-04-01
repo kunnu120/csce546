@@ -17,9 +17,9 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Account Info',
       url: '/list',
-      icon: 'list'
+      icon: 'information-circle-outline'
     }
   ];
 

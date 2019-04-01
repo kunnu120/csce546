@@ -25,6 +25,16 @@
         </ion-input>
       </ion-item>
     </ion-card>
+    <ion-card (click)="openCamera()">
+      <ion-item>
+        <ion-icon slot="start" name="image" size="large" color="tertiary"></ion-icon>
+        <ion-label>Profile Picture</ion-label>
+        <ion-button size="medium" color="tertiary">
+          <ion-icon slot="end" name="add" size="small" color="light"></ion-icon>
+          <ion-icon slot="end" name="camera" size="large" color="light"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
     <ion-card>
       <ion-item>
         <ion-icon slot="start" name="calendar" size="large" color="tertiary"></ion-icon>
