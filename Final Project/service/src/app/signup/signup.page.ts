@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -13,7 +15,7 @@ export class SignupPage implements OnInit {
   password: string;
   confirmPassword: string;
   googleSignUp: boolean;
-  constructor(private route: Router, private r: ActivatedRoute) {
+  constructor(private route: Router, private r: ActivatedRoute, private camera: Camera) {
     this.email = "";
     this.name = "";
     this.birthDate = "";
@@ -53,5 +55,21 @@ export class SignupPage implements OnInit {
         alert(error);
       });
     }
+  }
+  openCamera() {
+    var options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     // Handle error
+    });
   }
 }
