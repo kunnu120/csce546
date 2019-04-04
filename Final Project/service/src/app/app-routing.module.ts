@@ -19,8 +19,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './login/login.module#LoginPageModule'
   },
-  { path: 'signup',
+  {
+    path: 'signup',
     loadChildren: './signup/signup.module#SignupPageModule'
+  },
+  {
+    path: 'create-post',
+    loadChildren: './create-post/create-post.module#CreatePostPageModule'
   }
 ];
 
