@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-create-post',
@@ -16,6 +17,13 @@ export class CreatePostPage implements OnInit {
     this.route.navigate(['/home']);
   }
   makePost() {
-    
+
   }
+}
+export class Post {
+  public images: string[];
+  public title: string;
+  public price: number;
+  public description: string;
+  // public location: google.maps.LatLng;
 }
