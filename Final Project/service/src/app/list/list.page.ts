@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-list',
@@ -6,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  public items: Array<{ title: string; note: string; icon: string }> = [];
+  userName: string;
+  userBirthDate: string;
+  userProfilePic: string;
   constructor() {
-    
+    var self = this;
+    firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
+      snapshot.forEach(function(cSnap) {
+        var k = cSnap.key
+        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid+'/'+k).on('value', function(cShot) {
+          var x = cShot.val();
+          self.userName = x['Name'];
+          self.userBirthDate = x['Birth Date'];
+          self.userProfilePic = x['Profile Pic'];
+          self.userBirthDate = self.userBirthDate.substring(5,7)+'/'+self.userBirthDate.substring(8)+'/'+self.userBirthDate.substring(0,4);
+        });
+      });
+    });
   }
 
   ngOnInit() {
