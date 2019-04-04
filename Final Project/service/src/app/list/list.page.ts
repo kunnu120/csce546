@@ -11,6 +11,9 @@ export class ListPage implements OnInit {
   userBirthDate: string;
   userProfilePic: string;
   constructor() {
+    this.userName = "";
+    this.userBirthDate = "";
+    this.userProfilePic = "";
     var self = this;
     firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).on('value', function(snapshot) {
       snapshot.forEach(function(cSnap) {
