@@ -25,5 +25,5 @@ export class Post {
   public title: string;
   public price: number;
   public description: string;
-  // public location: google.maps.LatLng;
+  public location: string;
 }
