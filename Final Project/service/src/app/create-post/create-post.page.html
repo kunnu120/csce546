@@ -12,6 +12,44 @@
 
 <ion-content>
   <div id="content">
-
+    <ion-card style="height: 29vh;">
+      <ion-slides pager="true">
+        <ion-slide *ngFor="let img of images">
+          <ion-img src="{{img}}"></ion-img>
+        </ion-slide>
+      </ion-slides>
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button color="light" (click)="addImages()">
+          <ion-icon name="add" color="tertiary" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="image" color="tertiary" size="large" style="padding-left: 0;"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-item style="padding-top: 0;">
+        <ion-icon name="images" color="tertiary" size="large" slot="start"></ion-icon>
+        <ion-label position="floating">Post Images</ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="paper" color="tertiary" size="large" slot="start"></ion-icon>
+        <ion-label position="floating">Post Title</ion-label>
+        <ion-input [(ngModel)]="title" type="text" required="true"></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="today" color="tertiary" size="large" slot="start"></ion-icon>
+        <ion-label position="floating">Post Description</ion-label>
+        <ion-textarea [(ngModel)]="description" type="text" required="true"></ion-textarea>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="cash" color="tertiary" size="large" slot="start"></ion-icon>
+        <ion-label position="floating">Post Price</ion-label>
+        <ion-input [(ngModel)]="price" type="number" required="true" min="0" step="0.01"></ion-input>
+      </ion-item>
+    </ion-card>
+    
   </div>
 </ion-content>

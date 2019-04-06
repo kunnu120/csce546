@@ -9,3 +9,12 @@ ion-title {
   transform: translateX(-50%);
   position: absolute;
 }
+ion-badge {
+  padding-bottom: 0;
+  padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+ion-img {
+  height: 22vh;
+}
