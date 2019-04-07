@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-create-post',
@@ -14,13 +15,11 @@ export class CreatePostPage implements OnInit {
   price: number;
   description: string;
   location: string;
-  imagesRaw: any [];
   constructor(private route: Router, private camera: Camera) {
     this.title = "";
     this.description = "";
     this.location = "";
     this.images = [];
-    this.imagesRaw = [];
   }
 
   ngOnInit() {
@@ -38,8 +37,10 @@ export class CreatePostPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    this.camera.getPicture(options).then((img) => {
-      this.imagesRaw.push(img);
+    const result = await this.camera.getPicture(options);
+    const image = 'data:image/jpeg;base64,${result}';
+    firebase.storage().ref('Post Pics/').putString(image, 'data_url').then(function(snapshot) {
+      this.images.push(snapshot.downloadURL);
     });
   }
 }

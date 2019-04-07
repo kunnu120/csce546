@@ -16,13 +16,15 @@ export class SignupPage implements OnInit {
   password: string;
   confirmPassword: string;
   googleSignUp: boolean;
-  constructor(private route: Router, private r: ActivatedRoute) {
+  profilePic: string;
+  constructor(private route: Router, private r: ActivatedRoute, private camera: Camera) {
     this.email = "";
     this.name = "";
     this.birthDate = "";
     this.password = "";
     this.confirmPassword = "";
     this.googleSignUp = true;
+    this.profilePic = "";
     if(firebase.auth().currentUser != null) {
       this.googleSignUp = false;
       console.log(firebase.auth().currentUser.uid);
@@ -57,20 +59,28 @@ export class SignupPage implements OnInit {
       });
     }
   }
-  openCamera() {
-    // var options: CameraOptions = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.FILE_URI,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE
-    // }
-    //
-    // this.camera.getPicture(options).then((imageData) => {
-    //  // imageData is either a base64 encoded string or a file URI
-    //  // If it's base64 (DATA_URL):
-    //  let base64Image = 'data:image/jpeg;base64,' + imageData;
-    // }, (err) => {
-    //  // Handle error
+  async openCamera() {
+    var options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((img) => {
+      this.uploadPic(img);
+    }, (err) => {
+      // TODO
+    });
+  }
+  uploadPic(img) {
+    // var self = this;
+    // firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid).putString(img, 'base64', {contentType: 'image/jpeg'}).then(function(snapshot) {
+    //   firebase.storage().ref().child('Post Pics').getDownloadURL().then(function(url) {
+    //     self.profilePic = url;
+    //     console.log(url);
+    //   });
+    // }).catch(function(err) {
+    //   console.log(err.message);
     // });
   }
 }
