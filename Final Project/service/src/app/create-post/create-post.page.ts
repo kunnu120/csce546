@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-create-post',
@@ -13,14 +14,13 @@ export class CreatePostPage implements OnInit {
   price: number;
   description: string;
   location: string;
-  constructor(private route: Router) {
+  imagesRaw: any [];
+  constructor(private route: Router, private camera: Camera) {
     this.title = "";
     this.description = "";
     this.location = "";
     this.images = [];
-    this.images.push("https://i.ytimg.com/vi/jsAoS2ghTxk/maxresdefault.jpg");
-    this.images.push("https://happyfm.es/wp-content/uploads/2019/01/v-bts-publica-scenery-la-cancion-mas-especial-de-su-vida-01.jpg");
-    this.images.push("https://media.allure.com/photos/5b76eb54b60c70133b1eaac3/master/pass/BTS%20V%20mini%20ponytail%20hair.jpg");
+    this.imagesRaw = [];
   }
 
   ngOnInit() {
@@ -31,8 +31,16 @@ export class CreatePostPage implements OnInit {
   makePost() {
 
   }
-  addImages() {
-
+  async addImages() {
+    var options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((img) => {
+      this.imagesRaw.push(img);
+    });
   }
 }
 export class Post {
