@@ -4,7 +4,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-
+import { PopoverController } from '@ionic/angular';
+import { PopoverComponent } from '../popover/popover.component';
 declare var google;
 
 @Component({
@@ -18,7 +19,7 @@ export class CreatePostPage implements OnInit {
   price: number;
   description: string;
   location: string;
-  constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
+  constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private popoverCtrl: PopoverController) {
     this.title = "";
     this.description = "";
     this.location = "";
@@ -33,7 +34,7 @@ export class CreatePostPage implements OnInit {
   makePost() {
 
   }
-  async addImages() {
+  addImages() {
     var options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -43,10 +44,18 @@ export class CreatePostPage implements OnInit {
     var meta = {
       contentType: 'image/jpeg'
     };
-    const result = await this.camera.getPicture(options);
-    firebase.storage().ref('Post Pics/').put(result, meta).then(function(snapshot) {
+    const result = "file:///home/maheedhar/Pictures/Twitter/IMG_20180509_005734~2.jpg"//await this.camera.getPicture(options);
+    firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result, meta).then(function(snapshot) {
       this.images.push(snapshot.downloadURL);
     });
+  }
+  async chooseLocationOnMap(myEv: any) {
+    const popover = await this.popoverCtrl.create({
+      component: PopoverComponent,
+      event: myEv,
+      translucent: true,
+    });
+    return await popover.present();
   }
 }
 export class Post {

@@ -51,7 +51,15 @@
       </ion-item>
     </ion-card>
     <ion-card>
-
+      <ion-item>
+        <ion-icon name="pin" color="tertiary" size="large" slot="start"></ion-icon>
+        <ion-button color="light" slot="end" shape="round">Use Current Location
+          <ion-icon name="md-locate" color="tertiary" slot="start"></ion-icon>
+        </ion-button>
+        <ion-button color="light" (click)="chooseLocationOnMap($event)" slot="end" shape="round">Choose a Location
+          <ion-icon name="pin" color="tertiary" slot="start"></ion-icon>
+        </ion-button>
+      </ion-item>
     </ion-card>
   </div>
 </ion-content>

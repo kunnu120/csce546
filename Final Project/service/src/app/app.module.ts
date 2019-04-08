@@ -12,8 +12,9 @@ import * as firebase from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
+import { PopoverComponent } from './popover/popover.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopoverComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
