@@ -44,7 +44,7 @@ export class CreatePostPage implements OnInit {
     var meta = {
       contentType: 'image/jpeg'
     };
-    const result = "file:///home/maheedhar/Pictures/Twitter/IMG_20180509_005734~2.jpg"//await this.camera.getPicture(options);
+    const result = "file:///home/maheedhar/Pictures/IMG_20180320_020445.jpg"//await this.camera.getPicture(options);
     firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result, meta).then(function(snapshot) {
       this.images.push(snapshot.downloadURL);
     });
@@ -68,7 +68,8 @@ export class Post {
     lon: number
   };
   public active: boolean;
-  constructor(imgs: string[], ttl: string, prc: number, dscr: string, latitude: number, longitude: number) {
+  public uid: string;
+  constructor(imgs: string[], ttl: string, prc: number, dscr: string, latitude: number, longitude: number, ac: boolean, _uid: string) {
     this.images = [];
     for(var i: number=0; i<imgs.length; i++) {
       this.images.push(imgs[i]);
@@ -76,9 +77,12 @@ export class Post {
     this.title = ttl;
     this.price = prc;
     this.description = dscr;
-    this.location.lat = latitude;
-    this.location.lon = longitude;
-    this.active = true;
+    this.location = {
+      lat: latitude,
+      lon: longitude
+    };
+    this.active = ac;
+    this.uid = _uid;
   }
   deactivate() {
     this.active = false;

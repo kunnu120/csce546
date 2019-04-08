@@ -19,3 +19,9 @@ ion-badge {
   padding-top: 0;
   padding-bottom: 0;
 }
+ion-item {
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-border-width: 0;
+  --padding-start: 0;
+}
