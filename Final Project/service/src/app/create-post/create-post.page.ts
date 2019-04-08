@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
+declare var google;
 
 @Component({
   selector: 'app-create-post',
@@ -15,7 +18,7 @@ export class CreatePostPage implements OnInit {
   price: number;
   description: string;
   location: string;
-  constructor(private route: Router, private camera: Camera) {
+  constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
     this.title = "";
     this.description = "";
     this.location = "";
@@ -33,13 +36,15 @@ export class CreatePostPage implements OnInit {
   async addImages() {
     var options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
+    var meta = {
+      contentType: 'image/jpeg'
+    };
     const result = await this.camera.getPicture(options);
-    const image = 'data:image/jpeg;base64,${result}';
-    firebase.storage().ref('Post Pics/').putString(image, 'data_url').then(function(snapshot) {
+    firebase.storage().ref('Post Pics/').put(result, meta).then(function(snapshot) {
       this.images.push(snapshot.downloadURL);
     });
   }
@@ -49,9 +54,12 @@ export class Post {
   public title: string;
   public price: number;
   public description: string;
-  public location: string;
+  public location : {
+    lat: number,
+    lon: number
+  };
   public active: boolean;
-  constructor(imgs: string[], ttl: string, prc: number, dscr: string, loc: string) {
+  constructor(imgs: string[], ttl: string, prc: number, dscr: string, latitude: number, longitude: number) {
     this.images = [];
     for(var i: number=0; i<imgs.length; i++) {
       this.images.push(imgs[i]);
@@ -59,7 +67,8 @@ export class Post {
     this.title = ttl;
     this.price = prc;
     this.description = dscr;
-    this.location = loc;
+    this.location.lat = latitude;
+    this.location.lon = longitude;
     this.active = true;
   }
   deactivate() {

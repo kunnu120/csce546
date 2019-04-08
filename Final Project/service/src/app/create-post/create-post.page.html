@@ -26,30 +26,32 @@
       </ion-fab>
       <ion-item style="padding-top: 0;">
         <ion-icon name="images" color="tertiary" size="large" slot="start"></ion-icon>
-        <ion-label position="floating">Post Images</ion-label>
+        <ion-label position="floating">Images</ion-label>
       </ion-item>
     </ion-card>
     <ion-card>
       <ion-item>
         <ion-icon name="paper" color="tertiary" size="large" slot="start"></ion-icon>
-        <ion-label position="floating">Post Title</ion-label>
+        <ion-label position="floating">Title</ion-label>
         <ion-input [(ngModel)]="title" type="text" required="true"></ion-input>
       </ion-item>
     </ion-card>
     <ion-card>
       <ion-item>
         <ion-icon name="today" color="tertiary" size="large" slot="start"></ion-icon>
-        <ion-label position="floating">Post Description</ion-label>
+        <ion-label position="floating">Description</ion-label>
         <ion-textarea [(ngModel)]="description" type="text" required="true"></ion-textarea>
       </ion-item>
     </ion-card>
     <ion-card>
       <ion-item>
         <ion-icon name="cash" color="tertiary" size="large" slot="start"></ion-icon>
-        <ion-label position="floating">Post Price</ion-label>
+        <ion-label position="floating">Price</ion-label>
         <ion-input [(ngModel)]="price" type="number" required="true" min="0" step="0.01"></ion-input>
       </ion-item>
     </ion-card>
-    
+    <ion-card>
+
+    </ion-card>
   </div>
 </ion-content>
