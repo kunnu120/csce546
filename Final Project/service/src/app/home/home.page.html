@@ -15,10 +15,10 @@
       <ion-refresher-content> -->
       <ion-item lines="none" *ngFor="let post of recentPosts">
         <div *ngIf="post.thePost.active" style="width: 100%;">
-          <ion-avatar>
-            <ion-img src="{{post.profile.ProfilePic}}"></ion-img>
+          <ion-avatar slot="start">
+            <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
           </ion-avatar>
-          <ion-text>{{post.profile.Name}}</ion-text>
+          <ion-label slot="end">{{post.profile.Name}}</ion-label>
           <ion-slides pager="true">
             <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
               <ion-img src="{{img}}" style="width: 100%;"></ion-img>

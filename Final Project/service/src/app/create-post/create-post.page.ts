@@ -53,7 +53,7 @@ export class CreatePostPage implements OnInit {
     const popover = await this.popoverCtrl.create({
       component: PopoverComponent,
       event: myEv,
-      translucent: true,
+      translucent: false,
     });
     return await popover.present();
   }
