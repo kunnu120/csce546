@@ -9,7 +9,13 @@ import * as firebase from 'firebase';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  recentPosts: Post[];
+  recentPosts: {
+    profile: {
+      Name: any,
+      ProfilePic: any
+    },
+    thePost: Post
+  } [];
   constructor(private route: Router) {
     this.recentPosts = [];
     var self = this;
@@ -19,8 +25,23 @@ export class HomePage {
         firebase.database().ref('Posts/'+k).on('value', function(cSnap) {
           cSnap.forEach(function(thePost) {
             var x = thePost.val();
-            console.log(x);
-            self.recentPosts.push(new Post(x.images, x.title, x.price, x.description, x.location.lat, x.location.lon, x.active, x.uid));
+            // console.log(x);
+            var tempPost: Post = new Post(x.images, x.title, x.price, x.description, x.location.lat, x.location.lon, x.active, x.uid);
+            firebase.database().ref('User Info/'+x.uid).on('value', function(snapshot) {
+              snapshot.forEach(function(cSnap) {
+                var ke = cSnap.key;
+                firebase.database().ref('User Info/'+x.uid+'/'+ke).on('value', function(cShot) {
+                  var prof = {
+                    profile: {
+                      Name: cShot.val().Name,
+                      ProfilePic: cShot.val()['Profile Pic']
+                    },
+                    thePost: tempPost
+                  };
+                  self.recentPosts.push(prof);
+                });
+              });
+            });
           });
         });
       });

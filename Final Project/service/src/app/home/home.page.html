@@ -13,20 +13,22 @@
   <div id="content">
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
       <ion-refresher-content> -->
-      <ion-slides>
-        <ion-slide *ngFor="let post of recentPosts">
-          <div *ngIf="post.active" style="width: 100%;">
-            <ion-slides pager="true">
-              <ion-slide *ngFor="let img of post.images" style="width: 100%;">
-                <ion-img src="{{img}}" style="width: 100%;"></ion-img>
-              </ion-slide>
-            </ion-slides>
-            <ion-card-title>{{post.title}}</ion-card-title>
-            <ion-card-subtitle>{{post.description}}</ion-card-subtitle>
-            <ion-text>$ {{post.price | number:'1.2-2'}}</ion-text>
-          </div>
-        </ion-slide>
-      </ion-slides>
+      <ion-item lines="none" *ngFor="let post of recentPosts">
+        <div *ngIf="post.thePost.active" style="width: 100%;">
+          <ion-avatar>
+            <ion-img src="{{post.profile.ProfilePic}}"></ion-img>
+          </ion-avatar>
+          <ion-text>{{post.profile.Name}}</ion-text>
+          <ion-slides pager="true">
+            <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
+              <ion-img src="{{img}}" style="width: 100%;"></ion-img>
+            </ion-slide>
+          </ion-slides>
+          <ion-card-title>{{post.thePost.title}}</ion-card-title>
+          <ion-card-subtitle>{{post.thePost.description}}</ion-card-subtitle>
+          <ion-text>$ {{post.thePost.price | number:'1.2-2'}}</ion-text>
+        </div>
+      </ion-item>
       <!-- </ion-refresher-content>
     </ion-refresher> -->
   </div>

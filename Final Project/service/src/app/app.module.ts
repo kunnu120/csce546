@@ -15,7 +15,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 import { PopoverComponent } from './popover/popover.component';
 @NgModule({
   declarations: [AppComponent, PopoverComponent],
-  entryComponents: [],
+  entryComponents: [PopoverComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
