@@ -6,6 +6,10 @@
     <ion-title>
       Home
     </ion-title>
+    <ion-button slot="end" fill="clear" (click)="viewMessages()">
+      <ion-icon name="chatboxes" slot="end" color="tertiary" size="large">
+      </ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -15,18 +19,24 @@
       <ion-refresher-content> -->
       <ion-item lines="none" *ngFor="let post of recentPosts" (click)="goToPost(post)">
         <div *ngIf="post.thePost.active" style="width: 100%;">
-          <ion-avatar slot="start">
-            <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
-          </ion-avatar>
-          <ion-label slot="end">{{post.profile.Name}}</ion-label>
+          <ion-button fill="clear" style="height: 50px;" (click)="goToProfile(post.thePost.uid)">
+            <ion-avatar slot="start">
+              <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
+            </ion-avatar>
+            <ion-label slot="start" color="dark" style="font-size: 14pt;">
+              {{post.profile.Name}}
+            </ion-label>
+          </ion-button>
           <ion-slides pager="true">
             <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
               <ion-img src="{{img}}" style="width: 100%;"></ion-img>
             </ion-slide>
           </ion-slides>
           <ion-card-title>{{post.thePost.title}}</ion-card-title>
-          <ion-card-subtitle>{{post.thePost.description}}</ion-card-subtitle>
-          <ion-text>$ {{post.thePost.price | number:'1.2-2'}}</ion-text>
+          <ion-label>{{post.thePost.description}}</ion-label>
+          <ion-text style="font-weight: bold;">
+            $ {{post.thePost.price | number:'1.2-2'}}
+          </ion-text>
         </div>
       </ion-item>
       <!-- </ion-refresher-content>

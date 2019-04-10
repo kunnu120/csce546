@@ -19,4 +19,7 @@ export class PostPagePage implements OnInit {
   goBack() {
     this.route.navigate(['/home']);
   }
+  contactProvider() {
+    
+  }
 }

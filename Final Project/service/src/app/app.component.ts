@@ -15,11 +15,6 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
-    },
-    {
-      title: 'Account Info',
-      url: '/list',
-      icon: 'information-circle-outline'
     }
   ];
 
@@ -41,5 +36,8 @@ export class AppComponent {
   logOut() {
     firebase.auth().signOut();
     this.route.navigate(['/login']);
+  }
+  profile() {
+    this.route.navigate(['/list', {other: false}]);
   }
 }

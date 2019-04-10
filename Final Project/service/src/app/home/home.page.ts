@@ -53,4 +53,10 @@ export class HomePage {
   goToPost(post: any) {
     this.route.navigate(['/post-page', {currPost: JSON.stringify(post)}]);
   }
+  viewMessages() {
+    this.route.navigate(['/messages']);
+  }
+  goToProfile(Uid: any) {
+    this.route.navigate(['/list', {other: true, uid: Uid}]);
+  }
 }
