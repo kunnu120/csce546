@@ -19,11 +19,13 @@ export class CreatePostPage implements OnInit {
   price: number;
   description: string;
   location: string;
+  locSet: boolean;
   constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private popoverCtrl: PopoverController) {
     this.title = "";
     this.description = "";
     this.location = "";
     this.images = [];
+    this.locSet = false;
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class CreatePostPage implements OnInit {
   makePost() {
 
   }
-  addImages() {
+  async addImages() {
     var options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -44,7 +46,7 @@ export class CreatePostPage implements OnInit {
     var meta = {
       contentType: 'image/jpeg'
     };
-    const result = "file:///home/maheedhar/Pictures/IMG_20180320_020445.jpg"//await this.camera.getPicture(options);
+    const result = await this.camera.getPicture(options);
     firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result, meta).then(function(snapshot) {
       this.images.push(snapshot.downloadURL);
     });
@@ -56,6 +58,9 @@ export class CreatePostPage implements OnInit {
       translucent: false,
     });
     return await popover.present();
+  }
+  useCurrentLocation() {
+    this.locSet = true;
   }
 }
 export class Post {

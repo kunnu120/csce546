@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>{{post.thePost.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="content">
+    <ion-slides pager=true>
+      <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%">
+        <ion-img src="{{img}}"></ion-img>
+      </ion-slide>
+    </ion-slides>
+    <ion-text>{{post.thePost.description}}</ion-text>
+  </div>
+</ion-content>

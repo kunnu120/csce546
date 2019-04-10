@@ -26,7 +26,8 @@ const routes: Routes = [
   {
     path: 'create-post',
     loadChildren: './create-post/create-post.module#CreatePostPageModule'
-  }
+  },
+  { path: 'post-page', loadChildren: './post-page/post-page.module#PostPagePageModule' }
 ];
 
 @NgModule({

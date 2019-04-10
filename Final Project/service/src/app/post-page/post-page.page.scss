@@ -1,0 +1,11 @@
+#content {
+  max-width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+ion-title {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}

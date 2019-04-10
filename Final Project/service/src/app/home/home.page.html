@@ -13,7 +13,7 @@
   <div id="content">
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
       <ion-refresher-content> -->
-      <ion-item lines="none" *ngFor="let post of recentPosts">
+      <ion-item lines="none" *ngFor="let post of recentPosts" (click)="goToPost(post)">
         <div *ngIf="post.thePost.active" style="width: 100%;">
           <ion-avatar slot="start">
             <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>

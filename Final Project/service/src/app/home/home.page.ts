@@ -50,5 +50,7 @@ export class HomePage {
   newPost(){
     this.route.navigate(['/create-post']);
   }
-
+  goToPost(post: any) {
+    this.route.navigate(['/post-page', {currPost: JSON.stringify(post)}]);
+  }
 }
