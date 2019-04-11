@@ -17,28 +17,32 @@
   <div id="content">
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
       <ion-refresher-content> -->
-      <ion-item lines="none" *ngFor="let post of recentPosts" (click)="goToPost(post)">
-        <div *ngIf="post.thePost.active" style="width: 100%;">
-          <ion-button fill="clear" style="height: 50px;" (click)="goToProfile(post.thePost.uid)">
-            <ion-avatar slot="start">
+      <div *ngFor="let post of recentPosts" style="padding-top: 0;">
+        <div *ngIf="post.thePost.active">
+          <ion-button fill="clear" style="height: 42.5px; --color-activated: blue; padding-top: 0; padding-bottom: 0;" (click)="goToProfile(post.thePost.uid)">
+            <ion-avatar slot="start" style="top: 50%; position: relative;transform: translateY(-15%);">
               <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
             </ion-avatar>
-            <ion-label slot="start" color="dark" style="font-size: 14pt;">
+            <ion-label slot="start" color="dark" style="font-size: 12pt; text-transform: none;">
               {{post.profile.Name}}
             </ion-label>
           </ion-button>
-          <ion-slides pager="true">
-            <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
-              <ion-img src="{{img}}" style="width: 100%;"></ion-img>
-            </ion-slide>
-          </ion-slides>
-          <ion-card-title>{{post.thePost.title}}</ion-card-title>
-          <ion-label>{{post.thePost.description}}</ion-label>
-          <ion-text style="font-weight: bold;">
-            $ {{post.thePost.price | number:'1.2-2'}}
-          </ion-text>
+          <ion-item id="op" (click)="goToPost(post)">
+            <div style="width: 100%;">
+              <ion-slides pager="true" style="width: 100%;">
+                <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
+                  <ion-img src="{{img}}" style="width: 100%;"></ion-img>
+                </ion-slide>
+              </ion-slides>
+              <ion-card-title>{{post.thePost.title}}</ion-card-title>
+              <ion-label>{{post.thePost.description}}</ion-label>
+              <ion-text style="font-weight: bold;">
+                $ {{post.thePost.price | number:'1.2-2'}}
+              </ion-text>
+            </div>
+          </ion-item>
         </div>
-      </ion-item>
+      </div>
       <!-- </ion-refresher-content>
     </ion-refresher> -->
   </div>

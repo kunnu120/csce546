@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +12,8 @@ export class ListPage implements OnInit {
   userBirthDate: string;
   userProfilePic: string;
   other: boolean;
-  constructor(private r: ActivatedRoute) {
+  constructor(private r: ActivatedRoute, private route: Router) {
+    this.other = false;
     this.r.params.subscribe((params) => {
       this.other = params['other'];
     });
@@ -20,18 +21,20 @@ export class ListPage implements OnInit {
     this.userBirthDate = "";
     this.userProfilePic = "";
     var self = this;
-    var uid = firebase.auth().currentUser.uid;
+    var uid = "";
     if(this.other) {
       this.r.params.subscribe((params) => {
         uid = params['uid'];
       });
+    } else {
+      uid = firebase.auth().currentUser.uid;
     }
+    console.log(uid);
     firebase.database().ref('User Info/'+uid).on('value', function(snapshot) {
       snapshot.forEach(function(cSnap) {
         var k = cSnap.key
         firebase.database().ref('User Info/'+uid+'/'+k).on('value', function(cShot) {
           var x = cShot.val();
-          console.log(x);
           self.userName = x['Name'];
           self.userBirthDate = x['Birth Date'];
           self.userProfilePic = x['Profile Pic'];
@@ -42,5 +45,8 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+  goBack() {
+    this.route.navigate(['/home']);
   }
 }

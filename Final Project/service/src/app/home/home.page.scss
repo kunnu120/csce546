@@ -24,11 +24,12 @@ ion-item {
   --inner-padding-end: 0;
   --inner-border-width: 0;
   --padding-start: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 #profile {
-  max-width: 40px;
-  max-height: 40px;
-  --border-radius: 15px;
+  max-width: 30px;
+  max-height: 30px;
+  --border-radius: 12.5px;
+}
+#op {
+  opacity: 1;
 }

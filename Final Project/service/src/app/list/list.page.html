@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="dark"></ion-menu-button>
-    </ion-buttons>
+    <ion-menu-button color="dark" *ngIf="!other"></ion-menu-button>
+    <ion-button *ngIf="other" slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
     <ion-title>
       Account Info
     </ion-title>
@@ -15,12 +16,12 @@
       <ion-img src="{{userProfilePic}}"></ion-img>
     </ion-card>
     <ion-card>
-      <ion-item>
+      <ion-item lines="none">
         <ion-text><pre>Name:        {{userName}}</pre></ion-text>
       </ion-item>
     </ion-card>
     <ion-card>
-      <ion-item>
+      <ion-item lines="none">
         <ion-text><pre>Birth Date:  {{userBirthDate}}</pre></ion-text>
       </ion-item>
     </ion-card>
