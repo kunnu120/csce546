@@ -12,8 +12,9 @@ export class ListPage implements OnInit {
   userBirthDate: string;
   userProfilePic: string;
   other: boolean;
+  title: string;
   constructor(private r: ActivatedRoute, private route: Router) {
-    this.other = false;
+    this.title = "Account Info";
     this.r.params.subscribe((params) => {
       this.other = params['other'];
     });
@@ -21,15 +22,13 @@ export class ListPage implements OnInit {
     this.userBirthDate = "";
     this.userProfilePic = "";
     var self = this;
-    var uid = "";
-    if(this.other) {
+    var uid = firebase.auth().currentUser.uid;
+    if(this.other != null) {
       this.r.params.subscribe((params) => {
         uid = params['uid'];
       });
-    } else {
-      uid = firebase.auth().currentUser.uid;
+      this.title = "Profile Page";
     }
-    console.log(uid);
     firebase.database().ref('User Info/'+uid).on('value', function(snapshot) {
       snapshot.forEach(function(cSnap) {
         var k = cSnap.key

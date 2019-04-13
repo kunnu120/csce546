@@ -38,6 +38,6 @@ export class AppComponent {
     this.route.navigate(['/login']);
   }
   profile() {
-    this.route.navigate(['/list', {other: false}]);
+    this.route.navigate(['/list']);
   }
 }
