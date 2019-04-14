@@ -39,17 +39,19 @@ export class CreatePostPage implements OnInit {
   async addImages() {
     var options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    var meta = {
-      contentType: 'image/jpeg'
-    };
-    const result = await this.camera.getPicture(options);
-    firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result, meta).then(function(snapshot) {
-      this.images.push(snapshot.downloadURL);
+    var imgDat;
+    await this.camera.getPicture(options).then((img) => {
+      console.log(img);
+      imgDat = 'data:image/jpeg;base64,'+img;
     });
+    firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(imgDat);
+    // firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result).then(function(snapshot) {
+    //   this.images.push(snapshot.downloadURL);
+    // });
   }
   async chooseLocationOnMap(myEv: any) {
     const popover = await this.popoverCtrl.create({
