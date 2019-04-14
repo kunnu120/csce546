@@ -17,9 +17,9 @@
   <div id="content">
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
       <ion-refresher-content> -->
-      <div *ngFor="let post of recentPosts" style="padding-top: 0;">
+      <div *ngFor="let post of recentPosts" style="padding-top: 0; padding-bottom: 15px;">
         <div *ngIf="post.thePost.active">
-          <ion-button fill="clear" style="height: 42.5px; --color-activated: blue; padding-top: 0; padding-bottom: 0;" (click)="goToProfile(post.thePost.uid)">
+          <ion-button fill="clear" style="height: 42.5px; padding-top: 0; padding-bottom: 0;" (click)="goToProfile(post.thePost.uid)">
             <ion-avatar slot="start" style="top: 50%; position: relative;transform: translateY(-15%);">
               <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
             </ion-avatar>
