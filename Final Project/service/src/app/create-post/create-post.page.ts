@@ -20,12 +20,14 @@ export class CreatePostPage implements OnInit {
   description: string;
   location: string;
   locSet: boolean;
+  imgs: any[];
   constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private popoverCtrl: PopoverController) {
     this.title = "";
     this.description = "";
     this.location = "";
     this.images = [];
     this.locSet = false;
+    this.imgs = [];
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class CreatePostPage implements OnInit {
     this.route.navigate(['/home']);
   }
   makePost() {
-
+    
   }
   async addImages() {
     var options: CameraOptions = {
@@ -46,9 +48,15 @@ export class CreatePostPage implements OnInit {
     var imgDat;
     await this.camera.getPicture(options).then((img) => {
       console.log(img);
-      imgDat = 'data:image/jpeg;base64,'+img;
+      this.imgs.push(img);
     });
-    firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(imgDat);
+    const name = '${new Date().getTime()}';
+    var self = this;
+    firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.imgs[this.imgs.length-1], 'base64', {contentType: 'image/jpeg'}).then((x) => {
+      firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
+        self.images.push(url);
+      });
+    });
     // firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result).then(function(snapshot) {
     //   this.images.push(snapshot.downloadURL);
     // });
