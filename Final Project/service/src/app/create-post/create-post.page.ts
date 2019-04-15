@@ -36,7 +36,11 @@ export class CreatePostPage implements OnInit {
     this.route.navigate(['/home']);
   }
   makePost() {
-    
+    if(this.title != "" && this.description != "") {
+      // var tempPost: Post = new Post(this.images, this.title, this.price, this.description, )
+    } else {
+      alert("Title and Description can't be Empty!!!");
+    }
   }
   async addImages() {
     var options: CameraOptions = {
@@ -50,7 +54,7 @@ export class CreatePostPage implements OnInit {
       console.log(img);
       this.imgs.push(img);
     });
-    const name = '${new Date().getTime()}';
+    const name = new Date().getTime().toString();
     var self = this;
     firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.imgs[this.imgs.length-1], 'base64', {contentType: 'image/jpeg'}).then((x) => {
       firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
