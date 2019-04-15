@@ -10,3 +10,10 @@ ion-title {
   transform: translateX(-50%);
   position: absolute;
 }
+
+ion-content{
+  --background: none;
+  background-image: url('/assets/loginPic.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
