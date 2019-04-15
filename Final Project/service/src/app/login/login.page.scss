@@ -10,3 +10,20 @@ ion-title {
   transform: translateX(-50%);
   position: absolute;
 }
+
+ion-content{
+  --background: none;
+  background-image: url('/assets/loginPic.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+ion-card{
+  --ion-background-color :rgb(169,192,187);
+  opacity: 0.7; 
+}
+
+ion-header{
+  --ion-background-color :rgb(0,206,234);
+}
