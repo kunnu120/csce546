@@ -25,6 +25,7 @@ ion-item {
   --inner-border-width: 0;
   --padding-start: 0;
   --box-shadow: 10px;
+  --ion-background-color:  linear-gradient(silver, white);
 }
 #profile {
   max-width: 30px;
@@ -34,3 +35,10 @@ ion-item {
 #op {
   opacity: 1;
 }
+ion-content{
+  --background: none;
+  background-image: linear-gradient( white);
+}
+ion-header{
+  --ion-background-color: linear-gradient(to right,cornflowerblue, darkturquoise);
+   }
