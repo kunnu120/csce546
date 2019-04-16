@@ -49,7 +49,6 @@ export class CreatePostPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    var imgDat;
     await this.camera.getPicture(options).then((img) => {
       console.log(img);
       this.imgs.push(img);
@@ -61,9 +60,6 @@ export class CreatePostPage implements OnInit {
         self.images.push(url);
       });
     });
-    // firebase.storage().ref('Post Pics/'+firebase.auth().currentUser.uid).put(result).then(function(snapshot) {
-    //   this.images.push(snapshot.downloadURL);
-    // });
   }
   async chooseLocationOnMap(myEv: any) {
     const popover = await this.popoverCtrl.create({
