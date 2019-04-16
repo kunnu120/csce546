@@ -45,6 +45,7 @@ export class CreatePostPage implements OnInit {
     if(this.title != "" && this.description != "") {
       var tempPost: Post = new Post(this.images, this.title, this.price, this.description, this.location.lat, this.location.lon, true, firebase.auth().currentUser.uid);
       firebase.database().ref('Posts/'+firebase.auth().currentUser.uid).push(tempPost);
+      this.route.navigate(['/home']);
     } else {
       alert("Title and Description can't be Empty!!!");
     }
