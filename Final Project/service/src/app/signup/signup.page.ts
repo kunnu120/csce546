@@ -17,6 +17,7 @@ export class SignupPage implements OnInit {
   confirmPassword: string;
   googleSignUp: boolean;
   profilePic: string;
+  img: any;
   constructor(private route: Router, private r: ActivatedRoute, private camera: Camera) {
     this.email = "";
     this.name = "";
@@ -25,6 +26,7 @@ export class SignupPage implements OnInit {
     this.confirmPassword = "";
     this.googleSignUp = true;
     this.profilePic = "";
+    this.img = "";
     if(firebase.auth().currentUser != null) {
       this.googleSignUp = false;
       console.log(firebase.auth().currentUser.uid);
@@ -46,13 +48,25 @@ export class SignupPage implements OnInit {
     } else if(this.password != this.confirmPassword) {
       alert("The passwords don't match.")
     } else if(!this.googleSignUp) {
+      const name = new Date().getTime().toString();
       var self = this;
-      firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate});
+      firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
+        firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
+          self.profilePic = url;
+        });
+      });
+      firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate, 'Profile Pic': self.profilePic});
       self.route.navigate(['/home']);
     } else {
       var self = this;
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
-        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate});
+        const name = new Date().getTime().toString();
+        firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
+          firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
+            self.profilePic = url;
+          });
+        });
+        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate, 'Profile Pic': self.profilePic});
         self.route.navigate(['/home']);
       }).catch(function(error) {
         alert(error);
@@ -66,21 +80,10 @@ export class SignupPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-    this.camera.getPicture(options).then((img) => {
-      this.uploadPic(img);
-    }, (err) => {
-      // TODO
+    var self = this;
+    await this.camera.getPicture(options).then((im) => {
+      // console.log(im);
+      self.img = im;
     });
-  }
-  uploadPic(img) {
-    // var self = this;
-    // firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid).putString(img, 'base64', {contentType: 'image/jpeg'}).then(function(snapshot) {
-    //   firebase.storage().ref().child('Post Pics').getDownloadURL().then(function(url) {
-    //     self.profilePic = url;
-    //     console.log(url);
-    //   });
-    // }).catch(function(err) {
-    //   console.log(err.message);
-    // });
   }
 }
