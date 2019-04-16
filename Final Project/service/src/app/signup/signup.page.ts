@@ -56,6 +56,7 @@ export class SignupPage implements OnInit {
           self.profilePic = url;
         });
       });
+      alert(this.profilePic);
       firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate.substring(0,10), 'Profile Pic': self.profilePic});
       self.route.navigate(['/home']);
     } else {
@@ -67,6 +68,7 @@ export class SignupPage implements OnInit {
             self.profilePic = url;
           });
         });
+        alert(this.profilePic);
         firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate.substring(0,10), 'Profile Pic': self.profilePic});
         self.route.navigate(['/home']);
       }).catch(function(error) {
