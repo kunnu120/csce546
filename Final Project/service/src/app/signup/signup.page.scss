@@ -9,3 +9,14 @@ ion-title {
   transform: translateX(-50%);
   position: absolute;
 }
+ion-content{
+  --background: none;
+  background-image: linear-gradient(to right, rgb(100, 185, 235), turquoise);
+}
+ion-item{
+  opactiy: 0.85;
+}
+ion-header{
+  --ion-background-color: linear-gradient(to right,turquoise, rgb(100, 185, 235));
+}
+

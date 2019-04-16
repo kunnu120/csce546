@@ -10,7 +10,7 @@
   <div id="content">
     <ion-card>
       <ion-item *ngIf="googleSignUp">
-        <ion-icon slot="start" name="mail" size="large" color="tertiary">
+        <ion-icon slot="start" name="mail" size="large" color="dark">
         </ion-icon>
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" [(ngModel)]="email" required="true">
@@ -19,7 +19,7 @@
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon slot="start" name="person" size="large" color="tertiary">
+        <ion-icon slot="start" name="person" size="large" color="dark">
         </ion-icon>
         <ion-label position="floating">Full Name</ion-label>
         <ion-input type="text" [(ngModel)]="name" required="true">
@@ -28,20 +28,20 @@
     </ion-card>
     <ion-card (click)="openCamera()">
       <ion-item lines="none">
-        <ion-icon slot="start" name="image" size="large" color="tertiary">
+        <ion-icon slot="start" name="image" size="large" color="dark">
         </ion-icon>
         <ion-label>Profile Picture</ion-label>
-        <ion-button size="medium" color="tertiary" (click)="openCamera()">
-          <ion-icon slot="end" name="add" size="small" color="light">
+        <ion-button size="medium" color="white" (click)="openCamera()">
+          <ion-icon slot="end" name="add" size="small" color="dark">
           </ion-icon>
-          <ion-icon slot="end" name="camera" size="large" color="light">
+          <ion-icon slot="end" name="camera" size="large" color="dark">
           </ion-icon>
         </ion-button>
       </ion-item>
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon slot="start" name="calendar" size="large" color="tertiary">
+        <ion-icon slot="start" name="calendar" size="large" color="dark">
         </ion-icon>
         <ion-label position="floating">Date of Birth</ion-label>
         <ion-datetime display-format="YYYY-MM-DD" picker-format="YYYY MMMM DD" max="2001" [(ngModel)]="birthDate"></ion-datetime>
@@ -49,7 +49,7 @@
     </ion-card>
     <ion-card>
       <ion-item *ngIf="googleSignUp">
-        <ion-icon slot="start" name="key" size="large" color="tertiary">
+        <ion-icon slot="start" name="key" size="large" color="dark">
         </ion-icon>
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" [(ngModel)]="password" required="true">
@@ -58,7 +58,7 @@
     </ion-card>
     <ion-card>
       <ion-item *ngIf="googleSignUp">
-        <ion-icon slot="start" name="key" size="large" color="tertiary">
+        <ion-icon slot="start" name="key" size="large" color="dark">
         </ion-icon>
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input type="password" [(ngModel)]="confirmPassword" required="true">
@@ -67,7 +67,7 @@
     </ion-card>
     <ion-row>
       <ion-col text-center>
-        <ion-button (click)="signUp()" color="tertiary">Sign Up</ion-button>
+        <ion-button (click)="signUp()" color="dark">Sign Up</ion-button>
       </ion-col>
     </ion-row>
   </div>

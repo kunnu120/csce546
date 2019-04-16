@@ -37,7 +37,7 @@ ion-item {
 }
 ion-content{
   --background: none;
-  background-image: linear-gradient( white);
+  background-image: radial-gradient(circle, white, white, rgba(201, 201, 201, 0.863));
 }
 ion-header{
   --ion-background-color: linear-gradient(to right,cornflowerblue, darkturquoise);

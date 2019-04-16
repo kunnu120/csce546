@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" (click)="cancelPost()" color="danger">Cancel
+    <ion-button slot="start" (click)="cancelPost()" color="dark">Cancel
       <ion-icon name="close-circle-outline" slot="end"></ion-icon>
     </ion-button>
     <ion-title>New Post</ion-title>
-    <ion-button slot="end" (click)="makePost()" color="success">Post
+    <ion-button slot="end" (click)="makePost()" color="dark">Post
       <ion-icon name="checkbox-outline" slot="start"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -20,21 +20,21 @@
       </ion-slides>
       <ion-fab vertical="bottom" horizontal="end">
         <ion-fab-button color="light" (click)="addImages()">
-          <ion-icon name="add" color="tertiary" style="font-size: 20px;">
+          <ion-icon name="add" color="dark" style="font-size: 20px;">
           </ion-icon>
-          <ion-icon name="image" color="tertiary" size="large" style="padding-left: 0;">
+          <ion-icon name="image" color="dark" size="large" style="padding-left: 0;">
           </ion-icon>
         </ion-fab-button>
       </ion-fab>
       <ion-item style="padding-top: 0;">
-        <ion-icon name="images" color="tertiary" size="large" slot="start">
+        <ion-icon name="images" color="dark" size="large" slot="start">
         </ion-icon>
         <ion-label position="floating">Images</ion-label>
       </ion-item>
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon name="paper" color="tertiary" size="large" slot="start">
+        <ion-icon name="paper" color="dark" size="large" slot="start">
         </ion-icon>
         <ion-label position="floating">Title</ion-label>
         <ion-input [(ngModel)]="title" type="text" required="true"></ion-input>
@@ -42,7 +42,7 @@
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon name="today" color="tertiary" size="large" slot="start">
+        <ion-icon name="today" color="dark" size="large" slot="start">
         </ion-icon>
         <ion-label position="floating">Description</ion-label>
         <ion-textarea [(ngModel)]="description" type="text" required="true">
@@ -51,7 +51,7 @@
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon name="cash" color="tertiary" size="large" slot="start">
+        <ion-icon name="cash" color="success" size="large" slot="start">
         </ion-icon>
         <ion-label position="floating">Price</ion-label>
         <ion-input [(ngModel)]="price" type="number" required="true" min="0" step="0.01"></ion-input>
@@ -59,13 +59,13 @@
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon name="pin" color="tertiary" size="large" slot="start">
+        <ion-icon name="pin" color="danger" size="large" slot="start">
         </ion-icon>
-        <ion-button color="light" (click)="useCurrentLocation()" slot="end" shape="round" *ngIf="!locSet">Use Current Location
-          <ion-icon name="md-locate" color="tertiary" slot="start"></ion-icon>
+        <ion-button color="dark" (click)="useCurrentLocation()" slot="start" shape="round" *ngIf="!locSet">Use Current Location
+          <ion-icon name="md-locate" color="light" slot="start"></ion-icon>
         </ion-button>
-        <ion-button color="light" (click)="chooseLocationOnMap($event)" slot="end" shape="round" *ngIf="!locSet">Choose Another Location
-          <ion-icon name="pin" color="tertiary" slot="start"></ion-icon>
+        <ion-button color="dark" (click)="chooseLocationOnMap($event)" slot="end" shape="round" *ngIf="!locSet">Choose Another Location
+          <ion-icon name="pin" color="dark" slot="start"></ion-icon>
         </ion-button>
         <!-- <ion-label position="floating">{{}}</ion-label> -->
       </ion-item>

@@ -21,3 +21,10 @@ ion-img {
 ion-button {
   text-transform: none;
 }
+ion-content{
+  --background: none;
+  background-image: linear-gradient(to right, rgb(78, 176, 233), lightblue);
+}
+ion-header{
+  --ion-background-color: linear-gradient(to right, lightblue,rgb(78, 176, 233) );
+}
