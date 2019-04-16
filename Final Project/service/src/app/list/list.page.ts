@@ -14,7 +14,8 @@ export class ListPage implements OnInit {
   other: boolean;
   title: string;
   constructor(private r: ActivatedRoute, private route: Router) {
-    this.title = "Account Info";
+    this.title = "";
+    this.title= "Account Info";
     this.r.params.subscribe((params) => {
       this.other = params['other'];
     });
