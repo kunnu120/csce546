@@ -43,6 +43,7 @@ export class SignupPage implements OnInit {
     this.route.navigate(['/login']);
   }
   signUp() {
+    // alert(this.img);
     if(this.birthDate == "") {
       alert("The Birth Date is Empty.");
     } else if(this.password != this.confirmPassword) {
@@ -50,23 +51,23 @@ export class SignupPage implements OnInit {
     } else if(!this.googleSignUp) {
       const name = new Date().getTime().toString();
       var self = this;
-      firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
+      firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(self.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
         firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
           self.profilePic = url;
         });
       });
-      firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate, 'Profile Pic': self.profilePic});
+      firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate.substring(0,10), 'Profile Pic': self.profilePic});
       self.route.navigate(['/home']);
     } else {
       var self = this;
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
         const name = new Date().getTime().toString();
-        firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
+        firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(self.img, 'base64', {contentType: 'image/jpeg'}).then((x) => {
           firebase.storage().ref().child('Profile Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
             self.profilePic = url;
           });
         });
-        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate, 'Profile Pic': self.profilePic});
+        firebase.database().ref('User Info/'+firebase.auth().currentUser.uid).push({'Name' : self.name, 'Birth Date' : self.birthDate.substring(0,10), 'Profile Pic': self.profilePic});
         self.route.navigate(['/home']);
       }).catch(function(error) {
         alert(error);
