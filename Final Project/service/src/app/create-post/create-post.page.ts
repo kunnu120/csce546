@@ -18,13 +18,19 @@ export class CreatePostPage implements OnInit {
   title: string;
   price: number;
   description: string;
-  location: string;
+  location: {
+    lat: number,
+    lon: number
+  };
   locSet: boolean;
   imgs: any[];
   constructor(private route: Router, private camera: Camera, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private popoverCtrl: PopoverController) {
     this.title = "";
     this.description = "";
-    this.location = "";
+    this.location = {
+      lat: 0,
+      lon: 0
+    };
     this.images = [];
     this.locSet = false;
     this.imgs = [];
@@ -37,7 +43,8 @@ export class CreatePostPage implements OnInit {
   }
   makePost() {
     if(this.title != "" && this.description != "") {
-      // var tempPost: Post = new Post(this.images, this.title, this.price, this.description, )
+      var tempPost: Post = new Post(this.images, this.title, this.price, this.description, this.location.lat, this.location.lon, true, firebase.auth().currentUser.uid);
+      firebase.database().ref('Posts/'+firebase.auth().currentUser.uid).push(tempPost);
     } else {
       alert("Title and Description can't be Empty!!!");
     }
