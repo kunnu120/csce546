@@ -65,7 +65,8 @@ export class HomePage {
     if(this.Op) {
       var posts = document.getElementsByClassName('op');
       for (var i=0; i<posts.length; i++) {
-        posts[i].setAttribute("style", "opacity: .5");
+        var opaque = 1-(posts[i].getBoundingClientRect().top-document.documentElement.clientHeight/4)/document.documentElement.clientHeight;
+        posts[i].setAttribute("style", "opacity: "+opaque+";");
       }
     }
   }
