@@ -16,7 +16,9 @@ export class HomePage {
     },
     thePost: Post
   } [];
+  Op: boolean;
   constructor(private route: Router) {
+    this.Op = false;
     this.recentPosts = [];
     var self = this;
     firebase.database().ref('Posts').on('value', function(snapshot) {
@@ -58,5 +60,19 @@ export class HomePage {
   }
   goToProfile(Uid: any) {
     this.route.navigate(['/list', {other: true, uid: Uid}]);
+  }
+  onScroll(event: any) {
+    if(this.Op) {
+      var posts = document.getElementsByClassName('op');
+      for (var i=0; i<posts.length; i++) {
+        posts[i].setAttribute("style", "opacity: .5");
+      }
+    }
+  }
+  setOp(event: any) {
+    this.Op = true;
+  }
+  resetOp(event: any) {
+    this.Op = false;
   }
 }

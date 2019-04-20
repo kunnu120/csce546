@@ -13,12 +13,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScrollStart)="setOp($event)"
+  (ionScroll)="onScroll($event)" (ionScrollEnd)="resetOp($event)">
   <div id="content">
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh()">
       <ion-refresher-content> -->
       <div *ngFor="let post of recentPosts" style="padding-top: 0; padding-bottom: 15px;">
-        <div *ngIf="post.thePost.active">
+        <div class="op" *ngIf="post.thePost.active">
           <ion-button fill="clear" style="height: 42.5px; padding-top: 0; padding-bottom: 0;" (click)="goToProfile(post.thePost.uid)">
             <ion-avatar slot="start" style="top: 50%; position: relative;transform: translateY(-15%);">
               <ion-img id="profile" src="{{post.profile.ProfilePic}}"></ion-img>
@@ -27,7 +28,7 @@
               {{post.profile.Name}}
             </ion-label>
           </ion-button>
-          <ion-item id="op" (click)="goToPost(post)">
+          <ion-item (click)="goToPost(post)">
             <div style="width: 100%;">
               <ion-slides pager="true" style="width: 100%;">
                 <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
