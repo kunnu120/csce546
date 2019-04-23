@@ -21,7 +21,7 @@ export class HomePage {
     this.Op = false;
     this.recentPosts = [];
     var self = this;
-    firebase.database().ref('Posts').on('value', function(snapshot) {
+    firebase.database().ref('Posts').once('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
         var k = cShot.key;
         firebase.database().ref('Posts/'+k).on('value', function(cSnap) {
@@ -29,10 +29,10 @@ export class HomePage {
             var x = thePost.val();
             // console.log(x);
             var tempPost: Post = new Post(x.images, x.title, x.price, x.description, x.location.lat, x.location.lon, x.active, x.uid);
-            firebase.database().ref('User Info/'+x.uid).on('value', function(snapshot) {
+            firebase.database().ref('User Info/'+x.uid).once('value', function(snapshot) {
               snapshot.forEach(function(cSnap) {
                 var ke = cSnap.key;
-                firebase.database().ref('User Info/'+x.uid+'/'+ke).on('value', function(cShot) {
+                firebase.database().ref('User Info/'+x.uid+'/'+ke).once('value', function(cShot) {
                   var prof = {
                     profile: {
                       Name: cShot.val().Name,
@@ -67,6 +67,11 @@ export class HomePage {
       for (var i=0; i<posts.length; i++) {
         var opaque = 1-(posts[i].getBoundingClientRect().top-document.documentElement.clientHeight/4)/document.documentElement.clientHeight;
         posts[i].setAttribute("style", "opacity: "+opaque+";");
+      }
+    } else if(!this.Op) {
+      var posts = document.getElementsByClassName('op');
+      for (var i=0; i<posts.length; i++) {
+        posts[i].setAttribute("style", "opacity: 1;");
       }
     }
   }
