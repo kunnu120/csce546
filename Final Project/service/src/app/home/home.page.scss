@@ -33,8 +33,13 @@ ion-item {
 }
 ion-content{
   --background: none;
-  background-image: radial-gradient(at 50% 42.5%, rgba(255,255,255,0.5), white, rgba(0,0,0,1));
+  background-image: radial-gradient(circle, white, white, rgba(201, 201, 201, 1));
 }
 ion-header{
   --ion-background-color: linear-gradient(to right,cornflowerblue, darkturquoise);
+}
+#postImg {
+  width: 100%;
+  max-height: 35vh;
+  overflow: hidden;
 }

@@ -20,11 +20,13 @@ export class HomePage {
   constructor(private route: Router) {
     this.Op = false;
     this.recentPosts = [];
+  }
+  ionViewDidEnter() {
     var self = this;
     firebase.database().ref('Posts').once('value', function(snapshot) {
       snapshot.forEach(function(cShot) {
         var k = cShot.key;
-        firebase.database().ref('Posts/'+k).on('value', function(cSnap) {
+        firebase.database().ref('Posts/'+k).once('value', function(cSnap) {
           cSnap.forEach(function(thePost) {
             var x = thePost.val();
             // console.log(x);
@@ -65,7 +67,7 @@ export class HomePage {
     if(this.Op) {
       var posts = document.getElementsByClassName('op');
       for (var i=0; i<posts.length; i++) {
-        var opaque = 1-(posts[i].getBoundingClientRect().top-document.documentElement.clientHeight/4)/document.documentElement.clientHeight;
+        var opaque = 1-(posts[i].getBoundingClientRect().top-document.documentElement.clientHeight/3)/document.documentElement.clientHeight;
         posts[i].setAttribute("style", "opacity: "+opaque+";");
       }
     } else if(!this.Op) {

@@ -32,7 +32,7 @@
             <div style="width: 100%;">
               <ion-slides pager="true" style="width: 100%;">
                 <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%;">
-                  <ion-img src="{{img}}" style="width: 100%;"></ion-img>
+                  <ion-img src="{{img}}" id="postImg"></ion-img>
                 </ion-slide>
               </ion-slides>
               <ion-card-title>{{post.thePost.title}}</ion-card-title>
