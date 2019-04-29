@@ -82,5 +82,9 @@ export class HomePage {
   }
   resetOp(event: any) {
     this.Op = false;
+    var posts = document.getElementsByClassName('op');
+    for(var i=0; i<posts.length; i++) {
+      posts[i].setAttribute("style", "opacity: 1;");
+    }
   }
 }
