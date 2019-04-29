@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>Store Info.</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item *ngIf="owner">
+      <ion-icon slot="start" name="business" size="large" color="tertiary"></ion-icon>
+      <ion-label position="floating">Restaurant Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name" required="true">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="owner">
+      <ion-icon slot="start" name="information-circle-outline" size="large" color="tertiary"></ion-icon>
+      <ion-label position="floating">Restaurant Description</ion-label>
+      <ion-input type="text" [(ngModel)]="description" required="true">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="owner">
+      <ion-icon slot="start" name="pin" size="large" color="tertiary"></ion-icon>
+      <ion-label position="floating">Restaurant Location</ion-label>
+      <ion-input type="text" [(ngModel)]="location" required="true">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="owner">
+      <ion-icon slot="start" name="image" size="large" color="tertiary"></ion-icon>
+      <ion-label position="floating">Restaurant Image</ion-label>
+      <ion-input type="url" [(ngModel)]="imageUrl" required="true">
+      </ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="!owner" id="img">
+    <ion-img src="{{imageUrl}}"></ion-img>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="!owner">
+      <ion-icon slot="start" name="business" size="large" color="tertiary"></ion-icon>
+      <ion-card-title text-center>Name: {{name}}</ion-card-title>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="!owner">
+      <ion-icon slot="start" name="information-circle-outline" size="large" color="tertiary"></ion-icon>
+      <ion-card-title>{{description}}</ion-card-title>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngIf="!owner">
+      <ion-icon slot="start" name="pin" size="large" color="tertiary"></ion-icon>
+      <ion-card-title>{{location}}</ion-card-title>
+    </ion-item>
+  </ion-card>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="updateSettings()" *ngIf="owner">Update Info.</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

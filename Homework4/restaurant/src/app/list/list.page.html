@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title text-center>
+      Add Item
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-item  class="forum">
+      <pre>Item Name: </pre>
+      <ion-input type="string" [(ngModel)]="itemName"></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item  class="forum">
+      <pre>Price: $ </pre>
+      <ion-input type="number" [(ngModel)]="price" min="0" step="0.01" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item  class="forum">
+      <pre>Category: </pre>
+      <ion-select slot="end" [(ngModel)]="category" interface="alert">
+        <ion-select-option>Breakfast</ion-select-option>
+        <ion-select-option>Lunch</ion-select-option>
+        <ion-select-option>Dinner</ion-select-option>
+        <ion-select-option>Drinks</ion-select-option>
+        <ion-select-option>Desserts</ion-select-option>
+        <ion-select-option>Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item  class="forum">
+      <pre>Description: </pre>
+      <ion-input type="string" [(ngModel)]="description"></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item  class="forum">
+      <pre>Photo URL: </pre>
+      <ion-input type="url" [(ngModel)]="photoUrl"></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-row center align-items-center>
+    <ion-col text-center align-items-center>
+      <ion-button (click)="createItem()" id="buton" color="primary" style="min-height: 30px;" text-center>
+        Submit
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
