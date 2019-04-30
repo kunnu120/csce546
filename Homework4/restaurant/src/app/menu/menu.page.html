@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title>
+      {{typeOfMenu}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar animated="true" placeholder="Search Menu Items" [(ngModel)]="searchWord" (ionInput)="searchMenuItems()" (ionClear)="reset()"></ion-searchbar>
+  <ion-list *ngFor="let menuItem of instance.menuItems">
+    <ion-card color="primary" color="light" (click)="goToItem(menuItem)">
+      <ion-img src="{{menuItem.photo}}"></ion-img>
+      <ion-card-header>
+        <ion-card-title>
+          {{menuItem.name}}
+        </ion-card-title>
+        <ion-card-subtitle text-right>
+          $ {{menuItem.price | number:'1.2-2'}}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+</ion-content>

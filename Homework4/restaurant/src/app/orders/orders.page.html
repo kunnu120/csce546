@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-buttons>
+    <ion-title text-center>Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let ord of allOrders.orderList">
+    <ion-card (click)="goToOrder(ord)">
+      <ion-item color="light">
+        <ion-title text-left color="dark">
+          Total Items: {{ord.totalItems}}
+        </ion-title>
+        <ion-title text-right color="dark">
+          Total Price: $ {{ord.totalPrice | number:'1.2-2'}}
+        </ion-title>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

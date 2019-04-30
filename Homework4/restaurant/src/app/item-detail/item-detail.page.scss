@@ -1,0 +1,18 @@
+ion-card {
+  max-width: 600px;
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+  padding: 0px;
+  ion-item {
+    width: 80%;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+    padding: 0px;
+  }
+}
+#inner {
+  max-width: 125px;
+  min-height: 4vh;
+}

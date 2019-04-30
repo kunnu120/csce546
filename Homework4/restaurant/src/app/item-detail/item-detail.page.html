@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="goBack()" fill="clear">
+      <ion-icon name="arrow-back" color="dark"></ion-icon>
+    </ion-button>
+    <ion-title text-center>{{typeOfMenu}} Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+<body>
+  <ion-content padding>
+    <ion-card text-center>
+      <ion-img src="{{item.photo}}"></ion-img>
+      <ion-card-title style="font-size: 200%; padding-left: 5px;">
+        <pre>{{item.name}}    {{item.price | number:'1.2-2'}}</pre>
+      </ion-card-title>
+      <ion-text style="padding-left: 15px;">{{item.category}}</ion-text>
+      <p style="padding-left: 15px; font-weight: 600;">{{item.description}}</p>
+      <ion-item>
+        <ion-text><pre>Quantity: </pre></ion-text>
+        <ion-input type="number" [(ngModel)]="quantity" min="1" step="1"></ion-input>
+      </ion-item>
+      <ion-row center align-items-center>
+        <ion-col text-center align-items-center>
+          <ion-button size="medium" (click)="addToOrder()">Add to Order</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-content>
+</body>

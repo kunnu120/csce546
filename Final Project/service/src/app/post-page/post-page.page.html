@@ -10,7 +10,7 @@
   <div id="content">
     <ion-slides pager=true>
       <ion-slide *ngFor="let img of post.thePost.images" style="width: 100%">
-        <ion-img src="{{img}}"></ion-img>
+        <ion-img src="{{img}}" imageViewer></ion-img>
       </ion-slide>
     </ion-slides>
     <ion-label>{{post.thePost.description}}</ion-label><br>
