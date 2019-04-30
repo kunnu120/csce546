@@ -15,13 +15,13 @@ export class PopoverComponent {
   }
 
   initMap() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: 33.99243,
-        lng: -81.03057
-      },
-      zoom: 8
-    });
+    // this.map = new google.maps.Map(document.getElementById('map'), {
+    //   center: {
+    //     lat: 33.99243,
+    //     lng: -81.03057
+    //   },
+    //   zoom: 8
+    // });
   }
 
 }

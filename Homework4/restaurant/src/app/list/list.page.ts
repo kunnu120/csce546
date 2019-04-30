@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-list',
@@ -13,13 +14,14 @@ export class ListPage implements OnInit {
   public category: string;
   public description: string;
   public photoUrl: string;
-  constructor(private route: Router) {
+  public imag: any;
+  constructor(private route: Router, private camera: Camera) {
 
   }
 
   ngOnInit() {
   }
-  
+
   goBack() {
     this.route.navigate(['/home'])
   }
@@ -32,6 +34,27 @@ export class ListPage implements OnInit {
     this.description = "";
     this.photoUrl = "";
     this.route.navigate(['/item-detail', {selectedItem: JSON.stringify(tItem), menuType: tItem.category}]);
+  }
+  async addImage() {
+    document.getElementById('photoUrlInput').setAttribute("disabled", "true");
+    var options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+    }
+    await this.camera.getPicture(options).then((img) => {
+      console.log(img);
+      this.imag = img;
+    });
+    const name = new Date().getTime().toString();
+    var self = this;
+    firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).putString(this.imag, 'base64', {contentType: 'image/jpeg'}).then((x) => {
+      firebase.storage().ref().child('Post Pics/'+firebase.auth().currentUser.uid+'/'+name).getDownloadURL().then((url) =>{
+        self.photoUrl = url;
+      });
+    });
   }
 }
 export class Item {

@@ -43,7 +43,10 @@
   <ion-card>
     <ion-item  class="forum">
       <pre>Photo URL: </pre>
-      <ion-input type="url" [(ngModel)]="photoUrl"></ion-input>
+      <ion-input type="url" [(ngModel)]="photoUrl" id="photoUrlInput"></ion-input>
+      <ion-button color="light" (click)="addImage()">
+        <ion-icon name="camera" size="large"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-card>
   <ion-row center align-items-center>
