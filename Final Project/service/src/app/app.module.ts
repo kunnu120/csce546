@@ -5,7 +5,16 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment
+} from '@ionic-native/google-maps';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as firebase from 'firebase';
@@ -28,7 +37,8 @@ import { PopoverComponent } from './popover/popover.component';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     Geolocation,
-    NativeGeocoder
+    NativeGeocoder,
+    GoogleMaps
   ],
   bootstrap: [AppComponent]
 })
