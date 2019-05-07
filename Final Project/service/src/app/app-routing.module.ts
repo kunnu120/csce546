@@ -28,7 +28,8 @@ const routes: Routes = [
     loadChildren: './create-post/create-post.module#CreatePostPageModule'
   },
   { path: 'post-page', loadChildren: './post-page/post-page.module#PostPagePageModule' },
-  { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' }
+  { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },
+  { path: 'chat-page', loadChildren: './chat-page/chat-page.module#ChatPagePageModule' }
 ];
 
 @NgModule({

@@ -9,5 +9,13 @@
 
 <ion-content>
   <div id="content">
+    <ion-card *ngFor="let chat of chats">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="{{chat['Profile Pic']}}">
+        </ion-avatar>
+        <ion-title>{{chat.Name}}</ion-title>
+      </ion-item>
+    </ion-card>
   </div>
 </ion-content>

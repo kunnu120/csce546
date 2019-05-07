@@ -28,3 +28,16 @@ ion-content{
 ion-header{
   --ion-background-color: linear-gradient(to right, lightblue,rgb(78, 176, 233) );
 }
+.locBut {
+  --border-width: 0px;
+  --border-radius: 0px;
+  --padding-end: 0px;
+  --padding-start: 0px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  --inner-padding-end: 0px;
+  --inner-padding-start: 0px;
+  --inner-padding-top: 0px;
+  --inner-padding-bottom: 0px;
+  --inner-border-width: 0px;
+}

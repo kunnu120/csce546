@@ -59,15 +59,19 @@
     </ion-card>
     <ion-card>
       <ion-item>
-        <ion-icon name="pin" color="danger" size="large" slot="start">
-        </ion-icon>
-        <ion-button color="dark" (click)="useCurrentLocation()" slot="start" shape="round" *ngIf="!locSet">Use Current Location
-          <ion-icon name="md-locate" color="light" slot="start"></ion-icon>
-        </ion-button>
-        <ion-button color="dark" (click)="chooseLocationOnMap($event)" slot="end" shape="round" *ngIf="!locSet">Choose Another Location
-          <ion-icon name="pin" color="dark" slot="start"></ion-icon>
-        </ion-button>
-        <!-- <ion-label position="floating">{{}}</ion-label> -->
+        <ion-icon name="pin" color="danger" size="large" slot="start"></ion-icon>
+        <ion-list>
+          <ion-item lines="none" class="locBut" *ngIf="!locSet">
+            <ion-button color="dark" (click)="useCurrentLocation()" slot="start" shape="round">Use Current Location
+              <ion-icon name="md-locate" color="light" slot="start"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item lines="none" class="locBut" *ngIf="!locSet">
+            <ion-button color="dark" (click)="chooseLocationOnMap($event)" slot="start" shape="round">Choose Another Location
+              <ion-icon name="pin" color="light" slot="start"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
       </ion-item>
     </ion-card>
   </div>

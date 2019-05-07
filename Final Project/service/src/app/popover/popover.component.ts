@@ -24,10 +24,6 @@ export class PopoverComponent {
   }
 
   initMap() {
-    Environment.setEnv({
-     'API_KEY_FOR_BROWSER_RELEASE': '(AIzaSyBlK9YGUdec_wwiOywY0ckpDyblrnknVQA)',
-     'API_KEY_FOR_BROWSER_DEBUG': '(AIzaSyBlK9YGUdec_wwiOywY0ckpDyblrnknVQA)'
-   });
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
